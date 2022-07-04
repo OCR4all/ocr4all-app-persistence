@@ -12,6 +12,7 @@ import de.uniwuerzburg.zpd.ocr4all.application.persistence.project.ProcessHistor
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.project.Project;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.project.workflow.Snapshot;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.project.workflow.Workflow;
+import de.uniwuerzburg.zpd.ocr4all.application.persistence.spi.DisabledServiceProvider;
 
 /**
  * Defines persistence types.
@@ -25,7 +26,9 @@ public enum Type {
 	project_v1(Project.class),
 	project_folio_v1(de.uniwuerzburg.zpd.ocr4all.application.persistence.project.Folio.class),
 	project_process_v1(de.uniwuerzburg.zpd.ocr4all.application.persistence.project.Process.class),
-	project_workflow_v1(Workflow.class), project_workflow_snapshot_v1(Snapshot.class);
+	project_workflow_v1(Workflow.class), project_workflow_snapshot_v1(Snapshot.class),
+
+	service_provider_disabled_v1(DisabledServiceProvider.class);
 
 	/**
 	 * The class for the persistence type.
