@@ -48,6 +48,17 @@ public class Identifier extends Tracking {
 	}
 
 	/**
+	 * Creates an identifier with current date and tracking support.
+	 * 
+	 * @param user The user.
+	 * @param id   The service provider id.
+	 * @since 1.8
+	 */
+	public Identifier(String user, String id) {
+		this(new Date(), user, id);
+	}
+
+	/**
 	 * Creates an identifier with tracking support.
 	 * 
 	 * @param date The date.

@@ -7,8 +7,6 @@
  */
 package de.uniwuerzburg.zpd.ocr4all.application.persistence.spi;
 
-import java.util.Date;
-
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.Identifier;
 
 /**
@@ -41,7 +39,7 @@ public class LazyInitializedServiceProvider extends Identifier {
 	 * @since 1.8
 	 */
 	public LazyInitializedServiceProvider(String user, String id) {
-		super(new Date(), user, id);
+		super(user, id);
 	}
 
 }
