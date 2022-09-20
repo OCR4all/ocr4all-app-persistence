@@ -7,6 +7,7 @@
  */
 package de.uniwuerzburg.zpd.ocr4all.application.persistence.project.workflow;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -71,6 +72,11 @@ public class Snapshot extends Tracking {
 	private Instance instance;
 
 	/**
+	 * The lock.
+	 */
+	private Lock lock = null;
+
+	/**
 	 * Default constructor for a snapshot.
 	 * 
 	 * @since 1.8
@@ -92,7 +98,7 @@ public class Snapshot extends Tracking {
 	 */
 	public Snapshot(Type type, String label, String description, ServiceProvider serviceProvider, Instance instance,
 			String user) {
-		this(type, label, description, serviceProvider, instance, new Date(), null, user);
+		this(type, label, description, serviceProvider, instance, new Date(), null, user, null);
 	}
 
 	/**
@@ -106,10 +112,11 @@ public class Snapshot extends Tracking {
 	 * @param created         The created time.
 	 * @param updated         The updated time. If null, uses the created time.
 	 * @param user            The user.
+	 * @param lock            The lock.
 	 * @since 1.8
 	 */
 	public Snapshot(Type type, String label, String description, ServiceProvider serviceProvider, Instance instance,
-			Date created, Date updated, String user) {
+			Date created, Date updated, String user, Lock lock) {
 		super(created, user);
 
 		this.type = type;
@@ -121,6 +128,7 @@ public class Snapshot extends Tracking {
 		this.instance = instance;
 
 		this.updated = updated == null ? created : updated;
+		this.lock = lock;
 	}
 
 	/**
@@ -243,4 +251,138 @@ public class Snapshot extends Tracking {
 		this.instance = instance;
 	}
 
+	/**
+	 * Returns the lock.
+	 *
+	 * @return The lock.
+	 * @since 1.8
+	 */
+	public Lock getLock() {
+		return lock;
+	}
+
+	/**
+	 * Set the lock.
+	 *
+	 * @param lock The lock to set.
+	 * @since 1.8
+	 */
+	public void setLock(Lock lock) {
+		this.lock = lock;
+	}
+
+	/**
+	 * Defines snapshot locks.
+	 *
+	 * @author <a href="mailto:herbert.baier@uni-wuerzburg.de">Herbert Baier</a>
+	 * @version 1.0
+	 * @since 1.8
+	 */
+	public static class Lock implements Serializable {
+		/**
+		 * The serial version UID.
+		 */
+		private static final long serialVersionUID = 1L;
+
+		/**
+		 * The source.
+		 */
+		private String source = null;
+
+		/**
+		 * The comment.
+		 */
+		private String comment = null;
+
+		/**
+		 * The created time.
+		 */
+		private Date created = null;
+
+		/**
+		 * Default constructor for a snapshot lock.
+		 * 
+		 * @since 1.8
+		 */
+		public Lock() {
+			super();
+		}
+
+		/**
+		 * Creates a snapshot lock with current created time.
+		 * 
+		 * @param source  The source.
+		 * @param comment The comment.
+		 * @since 1.8
+		 */
+		public Lock(String source, String comment) {
+			super();
+
+			this.source = source == null ? null : source.trim();
+			this.comment = comment == null ? null : comment.trim();
+
+			this.created = new Date();
+		}
+
+		/**
+		 * Returns the source.
+		 *
+		 * @return The source.
+		 * @since 1.8
+		 */
+		public String getSource() {
+			return source;
+		}
+
+		/**
+		 * Set the source.
+		 *
+		 * @param source The source to set.
+		 * @since 1.8
+		 */
+		public void setSource(String source) {
+			this.source = source;
+		}
+
+		/**
+		 * Returns the comment.
+		 *
+		 * @return The comment.
+		 * @since 1.8
+		 */
+		public String getComment() {
+			return comment;
+		}
+
+		/**
+		 * Set the comment.
+		 *
+		 * @param comment The comment to set.
+		 * @since 1.8
+		 */
+		public void setComment(String comment) {
+			this.comment = comment;
+		}
+
+		/**
+		 * Returns the created time.
+		 *
+		 * @return The created time.
+		 * @since 1.8
+		 */
+		public Date getCreated() {
+			return created;
+		}
+
+		/**
+		 * Set the created time.
+		 *
+		 * @param created The created time to set.
+		 * @since 1.8
+		 */
+		public void setCreated(Date created) {
+			this.created = created;
+		}
+
+	}
 }
