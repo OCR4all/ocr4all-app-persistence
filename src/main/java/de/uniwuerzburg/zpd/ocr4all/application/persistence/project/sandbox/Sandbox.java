@@ -1,24 +1,24 @@
 /**
- * File:     Workflow.java
- * Package:  de.uniwuerzburg.zpd.ocr4all.application.persistence.project.workflow
+ * File:     Sandbox.java
+ * Package:  de.uniwuerzburg.zpd.ocr4all.application.persistence.project.sandbox
  * 
  * Author:   Herbert Baier (herbert.baier@uni-wuerzburg.de)
  * Date:     07.04.2021
  */
-package de.uniwuerzburg.zpd.ocr4all.application.persistence.project.workflow;
+package de.uniwuerzburg.zpd.ocr4all.application.persistence.project.sandbox;
 
 import java.util.Date;
 
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.project.Keyword;
 
 /**
- * Defines workflows.
+ * Defines sandboxes.
  *
  * @author <a href="mailto:herbert.baier@uni-wuerzburg.de">Herbert Baier</a>
  * @version 1.0
  * @since 1.8
  */
-public class Workflow extends Keyword {
+public class Sandbox extends Keyword {
 	/**
 	 * The serial version UID.
 	 */
@@ -61,11 +61,11 @@ public class Workflow extends Keyword {
 	private Date done = null;
 
 	/**
-	 * Default constructor for a workflow.
+	 * Default constructor for a sandbox.
 	 * 
 	 * @since 1.8
 	 */
-	public Workflow() {
+	public Sandbox() {
 		super();
 	}
 

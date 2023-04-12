@@ -1,11 +1,11 @@
 /**
  * File:     Snapshot.java
- * Package:  de.uniwuerzburg.zpd.ocr4all.application.persistence.project.workflow.snapshot
+ * Package:  de.uniwuerzburg.zpd.ocr4all.application.persistence.project.sandbox
  * 
  * Author:   Herbert Baier (herbert.baier@uni-wuerzburg.de)
  * Date:     08.03.2022
  */
-package de.uniwuerzburg.zpd.ocr4all.application.persistence.project.workflow;
+package de.uniwuerzburg.zpd.ocr4all.application.persistence.project.sandbox;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -17,7 +17,7 @@ import de.uniwuerzburg.zpd.ocr4all.application.persistence.Tracking;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.spi.ServiceProvider;
 
 /**
- * Defines workflow snapshots.
+ * Defines sandbox snapshots.
  *
  * @author <a href="mailto:herbert.baier@uni-wuerzburg.de">Herbert Baier</a>
  * @version 1.0
