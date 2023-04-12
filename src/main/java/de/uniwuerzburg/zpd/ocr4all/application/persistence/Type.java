@@ -10,8 +10,8 @@ package de.uniwuerzburg.zpd.ocr4all.application.persistence;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.project.ActionHistory;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.project.ProcessHistory;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.project.Project;
-import de.uniwuerzburg.zpd.ocr4all.application.persistence.project.workflow.Snapshot;
-import de.uniwuerzburg.zpd.ocr4all.application.persistence.project.workflow.Workflow;
+import de.uniwuerzburg.zpd.ocr4all.application.persistence.project.sandbox.Snapshot;
+import de.uniwuerzburg.zpd.ocr4all.application.persistence.project.sandbox.Sandbox;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.spi.DisabledServiceProvider;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.spi.LazyInitializedServiceProvider;
 
@@ -27,7 +27,7 @@ public enum Type {
 	project_v1(Project.class),
 	project_folio_v1(de.uniwuerzburg.zpd.ocr4all.application.persistence.project.Folio.class),
 	project_process_v1(de.uniwuerzburg.zpd.ocr4all.application.persistence.project.Process.class),
-	project_workflow_v1(Workflow.class), project_workflow_snapshot_v1(Snapshot.class),
+	project_sandbox_v1(Sandbox.class), project_sandbox_snapshot_v1(Snapshot.class),
 
 	service_provider_disabled_v1(DisabledServiceProvider.class),
 	service_provider_lazy_initialized_v1(LazyInitializedServiceProvider.class);
