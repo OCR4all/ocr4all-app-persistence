@@ -1,11 +1,11 @@
 /**
  * File:     Process.java
- * Package:  de.uniwuerzburg.zpd.ocr4all.application.persistence.project
+ * Package:  de.uniwuerzburg.zpd.ocr4all.application.persistence.job
  * 
  * Author:   Herbert Baier (herbert.baier@uni-wuerzburg.de)
  * Date:     10.03.2022
  */
-package de.uniwuerzburg.zpd.ocr4all.application.persistence.project;
+package de.uniwuerzburg.zpd.ocr4all.application.persistence.job;
 
 import java.util.Date;
 

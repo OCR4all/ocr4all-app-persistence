@@ -1,15 +1,16 @@
 /**
  * File:     ProcessHistory.java
- * Package:  de.uniwuerzburg.zpd.ocr4all.application.persistence.project
+ * Package:  de.uniwuerzburg.zpd.ocr4all.application.persistence.job
  * 
  * Author:   Herbert Baier (herbert.baier@uni-wuerzburg.de)
  * Date:     26.03.2021
  */
-package de.uniwuerzburg.zpd.ocr4all.application.persistence.project;
+package de.uniwuerzburg.zpd.ocr4all.application.persistence.job;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.Instance;
+import de.uniwuerzburg.zpd.ocr4all.application.persistence.project.ProjectHistory;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.spi.ServiceProvider;
 
 /**
