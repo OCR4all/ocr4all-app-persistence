@@ -1,11 +1,11 @@
 /**
  * File:     Workflow.java
- * Package:  de.uniwuerzburg.zpd.ocr4all.application.persistence.job
+ * Package:  de.uniwuerzburg.zpd.ocr4all.application.persistence.workflow
  * 
  * Author:   Herbert Baier (herbert.baier@uni-wuerzburg.de)
  * Date:     17.04.2023
  */
-package de.uniwuerzburg.zpd.ocr4all.application.persistence.job;
+package de.uniwuerzburg.zpd.ocr4all.application.persistence.workflow;
 
 import java.util.List;
 
@@ -23,11 +23,6 @@ public class Workflow extends Item {
 	 * The serial version UID.
 	 */
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * The identifier.
-	 */
-	private String id = null;
 
 	/**
 	 * The paths.
@@ -51,37 +46,15 @@ public class Workflow extends Item {
 	/**
 	 * Creates a workflow.
 	 * 
-	 * @param id         The identifier.
 	 * @param paths      The paths.
 	 * @param processors The processors.
 	 * @since 1.8
 	 */
-	public Workflow(String id, List<Path> paths, List<Processor> processors) {
+	public Workflow(List<Path> paths, List<Processor> processors) {
 		super();
-		
-		this.id = id;
+
 		this.paths = paths;
 		this.processors = processors;
-	}
-
-	/**
-	 * Returns the id.
-	 *
-	 * @return The id.
-	 * @since 1.8
-	 */
-	public String getId() {
-		return id;
-	}
-
-	/**
-	 * Set the id.
-	 *
-	 * @param id The id to set.
-	 * @since 1.8
-	 */
-	public void setId(String id) {
-		this.id = id;
 	}
 
 	/**

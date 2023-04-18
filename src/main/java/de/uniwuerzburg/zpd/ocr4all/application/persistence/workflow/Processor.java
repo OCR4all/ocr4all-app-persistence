@@ -1,11 +1,11 @@
 /**
  * File:     Processor.java
- * Package:  de.uniwuerzburg.zpd.ocr4all.application.persistence.job
+ * Package:  de.uniwuerzburg.zpd.ocr4all.application.persistence.workflow
  * 
  * Author:   Herbert Baier (herbert.baier@uni-wuerzburg.de)
  * Date:     17.04.2023
  */
-package de.uniwuerzburg.zpd.ocr4all.application.persistence.job;
+package de.uniwuerzburg.zpd.ocr4all.application.persistence.workflow;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

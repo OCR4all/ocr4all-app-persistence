@@ -1,11 +1,11 @@
 /**
  * File:     Metadata.java
- * Package:  de.uniwuerzburg.zpd.ocr4all.application.persistence.job
+ * Package:  de.uniwuerzburg.zpd.ocr4all.application.persistence.workflow
  * 
  * Author:   Herbert Baier (herbert.baier@uni-wuerzburg.de)
  * Date:     17.04.2023
  */
-package de.uniwuerzburg.zpd.ocr4all.application.persistence.job;
+package de.uniwuerzburg.zpd.ocr4all.application.persistence.workflow;
 
 import java.util.Date;
 
@@ -48,12 +48,6 @@ public class Metadata extends Identifier {
 	private String description = null;
 
 	/**
-	 * The view model.
-	 */
-	@JsonProperty("view-model")
-	private String viewModel = null;
-
-	/**
 	 * Default constructor for a metadata for workflow.
 	 * 
 	 * @since 1.8
@@ -67,10 +61,15 @@ public class Metadata extends Identifier {
 	 * 
 	 * @param user The user.
 	 * @param id   The service provider id.
+	 * @param label The label.
+	 * @param description The description.
 	 * @since 1.8
 	 */
-	public Metadata(String user, String id) {
+	public Metadata(String user, String id, String label, String description) {
 		super(user, id);
+		
+		this.label = label;
+		this.description = description;
 	}
 
 	/**
@@ -151,26 +150,6 @@ public class Metadata extends Identifier {
 	 */
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	/**
-	 * Returns the view model.
-	 *
-	 * @return The view model.
-	 * @since 1.8
-	 */
-	public String getViewModel() {
-		return viewModel;
-	}
-
-	/**
-	 * Set the view model.
-	 *
-	 * @param viewModel The view model to set.
-	 * @since 1.8
-	 */
-	public void setViewModel(String viewModel) {
-		this.viewModel = viewModel;
 	}
 
 }
