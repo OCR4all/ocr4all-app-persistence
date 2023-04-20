@@ -505,7 +505,8 @@ public class PersistenceManager {
 	 * @since 1.8
 	 */
 	public <T extends Entity> T getEntity(Class<T> clazz) throws NullPointerException, IOException {
-		return getEntity(clazz, null, null);
+		Path repository = null;
+		return getEntity(clazz, repository, null);
 	}
 
 	/**
@@ -614,6 +615,85 @@ public class PersistenceManager {
 			}
 
 		return entities;
+	}
+
+	/**
+	 * Returns the persisted entities of given class.
+	 * 
+	 * @param <T>        The entities class.
+	 * @param type       The type to filter the entities. If null, do not filter on
+	 *                   type.
+	 * @param clazz      The entities class.
+	 * @param repository The repository. If null, the default repository is used.
+	 * @param message    The functional interfaces to account for warning messages.
+	 *                   If null, ignore warning messages.
+	 * @param maximum    The maximum number of entities to return. A number less
+	 *                   than 1 returns all entities.
+	 * @param comparator The comparison function to sort the entities. Null if
+	 *                   returns the repository read order.
+	 * @return The entities.
+	 * @throws NullPointerException Throws if the no repository is defined.
+	 * @throws IOException          Throws if the repository can not be read.
+	 * @since 1.8
+	 */
+	@SuppressWarnings("unchecked")
+	public <T extends Entity> List<T> getEntities(Type type, Class<T> clazz, Path repository, Message message,
+			int maximum, Comparator<Entity> comparator) throws NullPointerException, IOException {
+
+		List<T> entities = new ArrayList<>();
+		for (Entity entity : getEntities(repository, message, maximum, comparator, type))
+			try {
+				entities.add((T) entity);
+			} catch (ClassCastException e) {
+				if (message != null)
+					message.warn("Could not cast the entity - " + e.getMessage() + ".");
+			}
+
+		return entities;
+	}
+
+	/**
+	 * Returns the persisted entity of given class and type. If the repository
+	 * contains more than one entity, the first one is returned.
+	 * 
+	 * @param <T>        The entity class.
+	 * @param type       The type to filter the entities. If null, do not filter on
+	 *                   type.
+	 * @param clazz      The entity class.
+	 * @param repository The repository. If null, the default repository is used.
+	 * @param message    The functional interfaces to account for warning messages.
+	 *                   If null, ignore warning messages.
+	 * @return The entity. Null if no entity is available.
+	 * @throws NullPointerException Throws if the no repository is defined.
+	 * @throws IOException          Throws if the repository can not be read.
+	 * @since 1.8
+	 */
+	public <T extends Entity> T getEntity(Type type, Class<T> clazz, Path repository, Message message)
+			throws NullPointerException, IOException {
+		List<T> entries = getEntities(type, clazz, repository, message, 1, null);
+
+		return entries.isEmpty() ? null : entries.get(0);
+	}
+
+	/**
+	 * Returns the persisted entity of given class and type from default repository.
+	 * If the repository contains more than one entity, the first one is returned.
+	 * 
+	 * @param <T>     The entities class.
+	 * @param type    The type to filter the entities. If null, do not filter on
+	 *                type.
+	 * @param clazz   The entities class.
+	 * @param message The functional interfaces to account for warning messages. If
+	 *                null, ignore warning messages.
+	 * @return The entities.
+	 * @throws NullPointerException Throws if the no repository is defined.
+	 * @throws IOException          Throws if the repository can not be read.
+	 * @since 1.8
+	 */
+	public <T extends Entity> T getEntity(Type type, Class<T> clazz, Message message)
+			throws NullPointerException, IOException {
+
+		return getEntity(type, clazz, null, message);
 	}
 
 	/**
