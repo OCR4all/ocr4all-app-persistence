@@ -12,6 +12,7 @@ package de.uniwuerzburg.zpd.ocr4all.application.persistence.spi;
  *
  * @author <a href="mailto:herbert.baier@uni-wuerzburg.de">Herbert Baier</a>
  * @version 1.0
+ * @param <V> The value type.
  * @since 1.8
  */
 public class SingleValueArgument<V> extends Argument {
