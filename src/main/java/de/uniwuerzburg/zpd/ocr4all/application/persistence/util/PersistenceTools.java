@@ -28,7 +28,8 @@ public class PersistenceTools {
 	 * 
 	 * @param isAscending True if sorting is in ascending order. Otherwise sorting
 	 *                    is in descending order.
-	 * @return
+	 * @return A comparison function, which imposes a total ordering on some
+	 *         collection of tracking entities.
 	 * @since 1.8
 	 */
 	public static Comparator<Entity> getTrackingDateComparator(final boolean isAscending) {
