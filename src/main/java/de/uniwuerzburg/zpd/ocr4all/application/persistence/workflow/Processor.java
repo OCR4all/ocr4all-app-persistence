@@ -31,16 +31,6 @@ public class Processor extends ServiceProvider {
 	private String idPath = null;
 
 	/**
-	 * The label.
-	 */
-	private String label = null;
-
-	/**
-	 * The description.
-	 */
-	private String description = null;
-
-	/**
 	 * Default constructor for a processor.
 	 * 
 	 * @since 1.8
@@ -67,46 +57,6 @@ public class Processor extends ServiceProvider {
 	 */
 	public void setIdPath(String id) {
 		idPath = id;
-	}
-
-	/**
-	 * Returns the label.
-	 *
-	 * @return The label.
-	 * @since 1.8
-	 */
-	public String getLabel() {
-		return label;
-	}
-
-	/**
-	 * Set the label.
-	 *
-	 * @param label The label to set.
-	 * @since 1.8
-	 */
-	public void setLabel(String label) {
-		this.label = label;
-	}
-
-	/**
-	 * Returns the description.
-	 *
-	 * @return The description.
-	 * @since 1.8
-	 */
-	public String getDescription() {
-		return description;
-	}
-
-	/**
-	 * Set the description.
-	 *
-	 * @param description The description to set.
-	 * @since 1.8
-	 */
-	public void setDescription(String description) {
-		this.description = description;
 	}
 
 }
