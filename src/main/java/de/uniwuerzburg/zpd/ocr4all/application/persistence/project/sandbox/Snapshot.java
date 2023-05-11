@@ -37,7 +37,7 @@ public class Snapshot extends Tracking {
 	 * @since 1.8
 	 */
 	public enum Type {
-		launcher, preprocessing, olr, ocr, postcorrection
+		launcher, preprocessing, olr, ocr, postcorrection, tool
 	}
 
 	/**
