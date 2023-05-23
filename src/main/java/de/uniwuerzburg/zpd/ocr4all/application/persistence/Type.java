@@ -15,6 +15,7 @@ import de.uniwuerzburg.zpd.ocr4all.application.persistence.project.sandbox.Snaps
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.project.sandbox.Sandbox;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.spi.DisabledServiceProvider;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.spi.LazyInitializedServiceProvider;
+import de.uniwuerzburg.zpd.ocr4all.application.persistence.spi.TaskExecutorServiceProvider;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.workflow.Metadata;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.workflow.View;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.workflow.Workflow;
@@ -36,7 +37,8 @@ public enum Type {
 	project_sandbox_snapshot_v1(Snapshot.class), project_action_history_v1(ActionHistory.class),
 
 	service_provider_disabled_v1(DisabledServiceProvider.class),
-	service_provider_lazy_initialized_v1(LazyInitializedServiceProvider.class);
+	service_provider_lazy_initialized_v1(LazyInitializedServiceProvider.class),
+	service_provider_task_executor_v1(TaskExecutorServiceProvider.class);
 
 	/**
 	 * The class for the persistence type.
