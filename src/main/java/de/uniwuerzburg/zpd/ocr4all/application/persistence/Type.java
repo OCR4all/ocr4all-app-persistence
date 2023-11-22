@@ -7,9 +7,9 @@
  */
 package de.uniwuerzburg.zpd.ocr4all.application.persistence;
 
+import de.uniwuerzburg.zpd.ocr4all.application.persistence.folio.Folio;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.job.ProcessHistory;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.project.ActionHistory;
-import de.uniwuerzburg.zpd.ocr4all.application.persistence.project.Folio;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.project.Project;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.project.sandbox.Snapshot;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.project.sandbox.Sandbox;
@@ -28,17 +28,19 @@ import de.uniwuerzburg.zpd.ocr4all.application.persistence.workflow.Workflow;
  * @since 1.8
  */
 public enum Type {
+	folio_v1(Folio.class),
+
 	job_process_v1(de.uniwuerzburg.zpd.ocr4all.application.persistence.job.Process.class),
 	job_process_history_v1(ProcessHistory.class),
 
-	workflow_v1(Workflow.class), workflow_metadata_v1(Metadata.class), workflow_view_v1(View.class),
-
-	project_v1(Project.class), project_folio_v1(Folio.class), project_sandbox_v1(Sandbox.class),
-	project_sandbox_snapshot_v1(Snapshot.class), project_action_history_v1(ActionHistory.class),
+	project_v1(Project.class), project_sandbox_v1(Sandbox.class), project_sandbox_snapshot_v1(Snapshot.class),
+	project_action_history_v1(ActionHistory.class),
 
 	service_provider_disabled_v1(DisabledServiceProvider.class),
 	service_provider_lazy_initialized_v1(LazyInitializedServiceProvider.class),
-	service_provider_task_executor_v1(TaskExecutorServiceProvider.class);
+	service_provider_task_executor_v1(TaskExecutorServiceProvider.class),
+
+	workflow_v1(Workflow.class), workflow_metadata_v1(Metadata.class), workflow_view_v1(View.class);
 
 	/**
 	 * The class for the persistence type.

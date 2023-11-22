@@ -73,9 +73,9 @@ public class Identifier extends Tracking {
 	}
 
 	/**
-	 * Returns the id.
+	 * Returns the identifier.
 	 *
-	 * @return The id.
+	 * @return The identifier.
 	 * @since 1.8
 	 */
 	public String getId() {
@@ -83,9 +83,9 @@ public class Identifier extends Tracking {
 	}
 
 	/**
-	 * Set the id.
+	 * Set the identifier.
 	 *
-	 * @param id The id to set.
+	 * @param id The identifier to set.
 	 * @since 1.8
 	 */
 	public void setId(String id) {

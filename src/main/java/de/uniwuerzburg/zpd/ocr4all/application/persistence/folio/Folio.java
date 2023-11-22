@@ -5,11 +5,12 @@
  * Author:   Herbert Baier (herbert.baier@uni-wuerzburg.de)
  * Date:     07.04.2021
  */
-package de.uniwuerzburg.zpd.ocr4all.application.persistence.project;
+package de.uniwuerzburg.zpd.ocr4all.application.persistence.folio;
 
 import java.util.Date;
 import java.util.Set;
 
+import de.uniwuerzburg.zpd.ocr4all.application.persistence.project.Keyword;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.util.ImageFormat;
 
 /**
@@ -26,20 +27,56 @@ public class Folio extends Keyword {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Define types.
+	 * Define PAGE XML types.
 	 *
 	 * @author <a href="mailto:herbert.baier@uni-wuerzburg.de">Herbert Baier</a>
 	 * @version 1.0
 	 * @since 1.8
 	 */
-	public enum Type {
-		unspecified, text, image, hybrid, empty
+	public enum PageXMLType {
+		frontCover("front-cover"), backCover("back-cover"), title, tableOfContents("table-of-contents"), index, content,
+		blank, other;
+
+		/**
+		 * The label.
+		 */
+		private final String label;
+
+		/**
+		 * Creates a PAGE XML type.
+		 * 
+		 * @since 1.8
+		 */
+		private PageXMLType() {
+			this.label = this.name();
+		}
+
+		/**
+		 * Creates a PAGE XML type.
+		 * 
+		 * @param label The label.
+		 * @since 1.8
+		 */
+		private PageXMLType(String label) {
+			this.label = label;
+		}
+
+		/**
+		 * Returns the label.
+		 *
+		 * @return The label.
+		 * @since 1.8
+		 */
+		public String getLabel() {
+			return label;
+		}
+
 	}
 
 	/**
-	 * The id.
+	 * The identifier.
 	 */
-	private int id = 0;
+	private String id = null;
 
 	/**
 	 * The name without extension.
@@ -62,9 +99,9 @@ public class Folio extends Keyword {
 	private Derivatives derivatives = null;
 
 	/**
-	 * The type.
+	 * The PAGE XML type.
 	 */
-	private Type type = null;
+	private PageXMLType pageXMLType = null;
 
 	/**
 	 * Default constructor for a folio.
@@ -76,7 +113,7 @@ public class Folio extends Keyword {
 	}
 
 	/**
-	 * Creates a folio of unspecified type.
+	 * Creates a folio.
 	 * 
 	 * @param date        The date.
 	 * @param user        The user.
@@ -87,12 +124,13 @@ public class Folio extends Keyword {
 	 * @param derivatives The sizes for the folios derivatives quality images.
 	 * @since 1.8
 	 */
-	public Folio(Date date, String user, int id, String name, ImageFormat format, Size size, Derivatives derivatives) {
+	public Folio(Date date, String user, String id, String name, ImageFormat format, Size size,
+			Derivatives derivatives) {
 		this(date, user, null, id, name, format, size, derivatives);
 	}
 
 	/**
-	 * Creates a folio of unspecified type.
+	 * Creates a folio.
 	 * 
 	 * @param date        The date.
 	 * @param user        The user.
@@ -104,7 +142,7 @@ public class Folio extends Keyword {
 	 * @param derivatives The sizes for the folios derivatives quality images.
 	 * @since 1.8
 	 */
-	public Folio(Date date, String user, Set<String> keywords, int id, String name, ImageFormat format, Size size,
+	public Folio(Date date, String user, Set<String> keywords, String id, String name, ImageFormat format, Size size,
 			Derivatives derivatives) {
 		super(date, user, keywords);
 
@@ -113,27 +151,25 @@ public class Folio extends Keyword {
 		setFormat(format);
 		setSize(size);
 		setDerivatives(derivatives);
-
-		type = Type.unspecified;
 	}
 
 	/**
-	 * Returns the id.
+	 * Returns the identifier.
 	 *
-	 * @return The id.
+	 * @return The identifier.
 	 * @since 1.8
 	 */
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
 	/**
-	 * Set the id.
+	 * Set the identifier.
 	 *
-	 * @param id The id to set.
+	 * @param id The identifier to set.
 	 * @since 1.8
 	 */
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -218,23 +254,23 @@ public class Folio extends Keyword {
 	}
 
 	/**
-	 * Returns the type.
+	 * Returns the PAGE XML type.
 	 *
-	 * @return The type.
+	 * @return The PAGE XML type.
 	 * @since 1.8
 	 */
-	public Type getType() {
-		return type;
+	public PageXMLType getPageXMLType() {
+		return pageXMLType;
 	}
 
 	/**
-	 * Set the type.
+	 * Set the PAGE XML type.
 	 *
-	 * @param type The type to set.
+	 * @param pageXMLType The PAGE XML type to set.
 	 * @since 1.8
 	 */
-	public void setType(Type type) {
-		this.type = type;
+	public void setPageXMLType(PageXMLType pageXMLType) {
+		this.pageXMLType = pageXMLType;
 	}
 
 	/**

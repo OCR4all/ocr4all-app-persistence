@@ -14,7 +14,7 @@ package de.uniwuerzburg.zpd.ocr4all.application.persistence.spi;
  * @version 1.0
  * @since 1.8
  */
-public class ImageArgument extends MultipleValueArgument<Integer> {
+public class ImageArgument extends MultipleValueArgument<String> {
 	/**
 	 * The serial version UID.
 	 */
