@@ -9,7 +9,7 @@ package de.uniwuerzburg.zpd.ocr4all.application.persistence.project.sandbox;
 
 import java.util.Date;
 
-import de.uniwuerzburg.zpd.ocr4all.application.persistence.project.Keyword;
+import de.uniwuerzburg.zpd.ocr4all.application.persistence.Keyword;
 
 /**
  * Defines sandboxes.

@@ -10,7 +10,7 @@ package de.uniwuerzburg.zpd.ocr4all.application.persistence.folio;
 import java.util.Date;
 import java.util.Set;
 
-import de.uniwuerzburg.zpd.ocr4all.application.persistence.project.Keyword;
+import de.uniwuerzburg.zpd.ocr4all.application.persistence.Keyword;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.util.ImageFormat;
 
 /**

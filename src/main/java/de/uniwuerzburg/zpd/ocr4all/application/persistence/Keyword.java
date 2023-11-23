@@ -5,14 +5,12 @@
  * Author:   Herbert Baier (herbert.baier@uni-wuerzburg.de)
  * Date:     24.06.2021
  */
-package de.uniwuerzburg.zpd.ocr4all.application.persistence.project;
+package de.uniwuerzburg.zpd.ocr4all.application.persistence;
 
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-
-import de.uniwuerzburg.zpd.ocr4all.application.persistence.Tracking;
 
 /**
  * Defines keywords.
