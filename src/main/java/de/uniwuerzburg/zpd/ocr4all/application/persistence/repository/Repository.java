@@ -136,7 +136,7 @@ public class Repository extends Tracking {
 		private Set<String> users;
 
 		/**
-		 * The groups grants.
+		 * The groups.
 		 */
 		private Set<String> groups;
 
@@ -154,15 +154,16 @@ public class Repository extends Tracking {
 		 * 
 		 * @param isSecured True if the repository is secured.
 		 * @param users     The users.
-		 * @param groups    The groups grants.
+		 * @param groups    The groups.
 		 * @since 1.8
 		 */
 		public Security(boolean isSecured, Set<String> users, Set<String> groups) {
 			super();
 
 			this.isSecured = isSecured;
-			this.users = users;
-			this.groups = groups;
+
+			setUsers(users);
+			setGroups(groups);
 		}
 
 		/**
