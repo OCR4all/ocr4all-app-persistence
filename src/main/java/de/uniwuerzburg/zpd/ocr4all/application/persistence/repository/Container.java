@@ -177,7 +177,8 @@ public class Container extends Keyword {
 	 */
 	public static class Security implements Serializable {
 		/**
-		 * Defines rights.
+		 * Defines rights. The order of the elements is defined in ascending order to
+		 * the right.
 		 *
 		 * @author <a href="mailto:herbert.baier@uni-wuerzburg.de">Herbert Baier</a>
 		 * @version 1.0
@@ -186,14 +187,57 @@ public class Container extends Keyword {
 		public enum Right {
 			read, write, special;
 
+			public static Right maximal = special;
+
 			/**
-			 * Returns the maximal right.
+			 * Returns true if the target right is fulfilled.
 			 * 
-			 * @return The maximal right.
+			 * @param target The target right.
+			 * @return True if the target right is fulfilled.
 			 * @since 1.8
 			 */
-			public static Right getMaximal() {
-				return special;
+			public boolean iFulfilled(Right target) {
+				return target != null && this.ordinal() >= target.ordinal();
+			}
+
+			/**
+			 * Returns true if the read right is fulfilled.
+			 * 
+			 * @return True if the read right is fulfilled.
+			 * @since 1.8
+			 */
+			public boolean isReadFulfilled() {
+				return iFulfilled(read);
+			}
+
+			/**
+			 * Returns true if the write right is fulfilled.
+			 * 
+			 * @return True if the write right is fulfilled.
+			 * @since 1.8
+			 */
+			public boolean isWriteFulfilled() {
+				return iFulfilled(write);
+			}
+
+			/**
+			 * Returns true if the special right is fulfilled.
+			 * 
+			 * @return True if the special right is fulfilled.
+			 * @since 1.8
+			 */
+			public boolean isSpecialFulfilled() {
+				return iFulfilled(special);
+			}
+
+			/**
+			 * Returns true if the maximal right is fulfilled.
+			 * 
+			 * @return True if the maximal right is fulfilled.
+			 * @since 1.8
+			 */
+			public boolean isMaximalFulfilled() {
+				return iFulfilled(maximal);
 			}
 
 			/**
@@ -241,16 +285,17 @@ public class Container extends Keyword {
 		/**
 		 * Creates a container securities.
 		 * 
-		 * @param user  The user.
 		 * @param right The right.
+		 * @param user  The user.
 		 * @since 1.8
 		 */
-		public Security(String user, Right right) {
+		public Security(Right right, String user) {
 			super();
 
 			if (user != null && !user.isBlank() && right != null) {
-				users = new HashSet<>();
-				users.add(new Grant(user, right));
+				Set<Grant> grants = new HashSet<>();
+				grants.add(new Grant(right, user));
+				setUsers(grants);
 			}
 		}
 
@@ -280,17 +325,14 @@ public class Container extends Keyword {
 		 * @since 1.8
 		 */
 		private Set<Grant> filter(Set<Grant> grants) {
-			if (grants == null)
-				return null;
-			else {
-				Set<Grant> objectives = new HashSet<>();
+			Set<Grant> objectives = new HashSet<>();
 
+			if (grants != null)
 				for (Grant grant : grants)
 					if (grant != null && grant.getRight() != null && grant.getTargets() != null)
 						objectives.add(grant);
 
-				return objectives;
-			}
+			return objectives.isEmpty() ? null : objectives;
 		}
 
 		/**
@@ -388,17 +430,32 @@ public class Container extends Keyword {
 			/**
 			 * Creates a grant.
 			 * 
-			 * @param target The target.
 			 * @param right  The right.
+			 * @param target The target.
 			 * @since 1.8
 			 */
-			public Grant(String target, Right right) {
+			public Grant(Right right, String target) {
 				super();
 
 				this.right = right;
 
-				targets = new HashSet<>();
-				targets.add(target.trim().toLowerCase());
+				Set<String> targets = new HashSet<>();
+				targets.add(target);
+				setTargets(targets);
+			}
+
+			/**
+			 * Creates a grant.
+			 * 
+			 * @param right   The right.
+			 * @param targets The targets.
+			 * @since 1.8
+			 */
+			public Grant(Right right, Set<String> targets) {
+				super();
+
+				this.right = right;
+				setTargets(targets);
 			}
 
 			/**
@@ -438,13 +495,15 @@ public class Container extends Keyword {
 			 * @since 1.8
 			 */
 			public void setTargets(Set<String> targets) {
+				this.targets = new HashSet<>();
 				Set<String> objectives = new HashSet<String>();
 
-				for (String target : targets)
-					if (target != null && !target.isBlank())
-						objectives.add(target.trim().toLowerCase());
+				if (targets != null)
+					for (String target : targets)
+						if (target != null && !target.isBlank())
+							objectives.add(target.trim().toLowerCase());
 
-				this.targets = objectives;
+				this.targets = objectives.isEmpty() ? null : objectives;
 			}
 		}
 	}
