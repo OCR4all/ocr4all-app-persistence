@@ -126,7 +126,7 @@ public class Folio extends Keyword {
 	 */
 	public Folio(Date date, String user, String id, String name, ImageFormat format, Size size,
 			Derivatives derivatives) {
-		this(date, user, null, id, name, format, size, derivatives);
+		this(date, user, null, id, name, format, size, derivatives, null);
 	}
 
 	/**
@@ -140,10 +140,11 @@ public class Folio extends Keyword {
 	 * @param format      The format.
 	 * @param size        The size.
 	 * @param derivatives The sizes for the folios derivatives quality images.
+	 * @param PageXMLType The PAGE XML type.
 	 * @since 1.8
 	 */
 	public Folio(Date date, String user, Set<String> keywords, String id, String name, ImageFormat format, Size size,
-			Derivatives derivatives) {
+			Derivatives derivatives, PageXMLType pageXMLType) {
 		super(date, user, keywords);
 
 		setId(id);
@@ -151,6 +152,7 @@ public class Folio extends Keyword {
 		setFormat(format);
 		setSize(size);
 		setDerivatives(derivatives);
+		setPageXMLType(pageXMLType);
 	}
 
 	/**
