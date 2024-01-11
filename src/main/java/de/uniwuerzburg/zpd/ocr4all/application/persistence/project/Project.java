@@ -1,7 +1,7 @@
 /**
  * File:     Project.java
  * Package:  de.uniwuerzburg.zpd.ocr4all.application.persistence.project
- * 
+ *
  * Author:   Herbert Baier (herbert.baier@uni-wuerzburg.de)
  * Date:     10.05.2021
  */
@@ -40,7 +40,18 @@ public class Project extends Keyword {
 	 * @since 1.8
 	 */
 	public enum State {
-		active, closed, blocked
+		/**
+		 * Active state
+		 */
+		active,
+		/**
+		 * Closed state
+		 */
+		closed,
+		/**
+		 * Blocked state
+		 */
+		blocked
 	}
 
 	/**
@@ -80,7 +91,7 @@ public class Project extends Keyword {
 
 	/**
 	 * Default constructor for a project.
-	 * 
+	 *
 	 * @since 1.8
 	 */
 	public Project() {
@@ -252,7 +263,7 @@ public class Project extends Keyword {
 
 		/**
 		 * Default constructor for project securities.
-		 * 
+		 *
 		 * @since 1.8
 		 */
 		public Security() {
@@ -261,7 +272,7 @@ public class Project extends Keyword {
 
 		/**
 		 * Filter the grants, this means, remove the null items.
-		 * 
+		 *
 		 * @param grants The grants to filter.
 		 * @return The filtered grants.
 		 * @since 1.8
@@ -465,7 +476,7 @@ public class Project extends Keyword {
 
 			/**
 			 * Default constructor for a grant.
-			 * 
+			 *
 			 * @since 1.8
 			 */
 			public Grant() {

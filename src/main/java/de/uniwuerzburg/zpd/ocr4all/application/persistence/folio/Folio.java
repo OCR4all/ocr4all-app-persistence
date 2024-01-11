@@ -1,7 +1,7 @@
 /**
  * File:     Folio.java
  * Package:  de.uniwuerzburg.zpd.ocr4all.application.persistence.project
- * 
+ *
  * Author:   Herbert Baier (herbert.baier@uni-wuerzburg.de)
  * Date:     07.04.2021
  */
@@ -27,15 +27,45 @@ public class Folio extends Keyword {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Define PAGE XML types.
+	 * Define PAGE XML page types.
 	 *
 	 * @author <a href="mailto:herbert.baier@uni-wuerzburg.de">Herbert Baier</a>
 	 * @version 1.0
 	 * @since 1.8
 	 */
 	public enum PageXMLType {
-		frontCover("front-cover"), backCover("back-cover"), title, tableOfContents("table-of-contents"), index, content,
-		blank, other;
+		/**
+		 * Front Cover Page Type
+		 */
+		frontCover("front-cover"),
+		/**
+		 * Back Cover Page Type
+		 */
+		backCover("back-cover"),
+		/**
+		 * Title Page Type
+		 */
+		title,
+		/**
+		 * Table Of Contents Page Type
+		 */
+		tableOfContents("table-of-contents"),
+		/**
+		 * Index Page Type
+		 */
+		index,
+		/**
+		 * Content Page Type
+		 */
+		content,
+		/**
+		 * Blank Page Type
+		 */
+		blank,
+		/**
+		 * Other Page Type
+		 */
+		other;
 
 		/**
 		 * The label.
@@ -44,7 +74,7 @@ public class Folio extends Keyword {
 
 		/**
 		 * Creates a PAGE XML type.
-		 * 
+		 *
 		 * @since 1.8
 		 */
 		private PageXMLType() {
@@ -53,7 +83,7 @@ public class Folio extends Keyword {
 
 		/**
 		 * Creates a PAGE XML type.
-		 * 
+		 *
 		 * @param label The label.
 		 * @since 1.8
 		 */
@@ -105,7 +135,7 @@ public class Folio extends Keyword {
 
 	/**
 	 * Default constructor for a folio.
-	 * 
+	 *
 	 * @since 1.8
 	 */
 	public Folio() {
@@ -114,7 +144,7 @@ public class Folio extends Keyword {
 
 	/**
 	 * Creates a folio.
-	 * 
+	 *
 	 * @param date        The date.
 	 * @param user        The user.
 	 * @param id          The id.
@@ -131,7 +161,7 @@ public class Folio extends Keyword {
 
 	/**
 	 * Creates a folio.
-	 * 
+	 *
 	 * @param date        The date.
 	 * @param user        The user.
 	 * @param keywords    The keywords.
@@ -140,7 +170,7 @@ public class Folio extends Keyword {
 	 * @param format      The format.
 	 * @param size        The size.
 	 * @param derivatives The sizes for the folios derivatives quality images.
-	 * @param PageXMLType The PAGE XML type.
+	 * @param pageXMLType The PAGE XML type.
 	 * @since 1.8
 	 */
 	public Folio(Date date, String user, Set<String> keywords, String id, String name, ImageFormat format, Size size,
@@ -295,7 +325,7 @@ public class Folio extends Keyword {
 
 		/**
 		 * Default constructor for a folio size.
-		 * 
+		 *
 		 * @since 1.8
 		 */
 		public Size() {
@@ -304,7 +334,7 @@ public class Folio extends Keyword {
 
 		/**
 		 * Creates a folio size.
-		 * 
+		 *
 		 * @param width  The width.
 		 * @param height The height.
 		 * @since 1.8
@@ -359,7 +389,7 @@ public class Folio extends Keyword {
 	/**
 	 * Defines sizes for the folios derivatives quality images.
 	 *
-	 * 
+	 *
 	 * @author <a href="mailto:herbert.baier@uni-wuerzburg.de">Herbert Baier</a>
 	 * @version 1.0
 	 * @since 1.8
@@ -382,7 +412,7 @@ public class Folio extends Keyword {
 
 		/**
 		 * Default constructor for sizes of the folios derivatives quality images.
-		 * 
+		 *
 		 * @since 1.8
 		 */
 		public Derivatives() {
@@ -391,7 +421,7 @@ public class Folio extends Keyword {
 
 		/**
 		 * Creates sizes of the folios derivatives quality images
-		 * 
+		 *
 		 * @param thumbnail The size for folios derivatives quality thumbnail.
 		 * @param detail    The size for folios derivatives quality detail.
 		 * @param best      The size for folios derivatives quality best.

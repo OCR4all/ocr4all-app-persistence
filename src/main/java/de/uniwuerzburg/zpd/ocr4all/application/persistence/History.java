@@ -1,7 +1,7 @@
 /**
  * File:     History.java
  * Package:  de.uniwuerzburg.zpd.ocr4all.application.persistence
- * 
+ *
  * Author:   Herbert Baier (herbert.baier@uni-wuerzburg.de)
  * Date:     26.03.2021
  */
@@ -28,7 +28,26 @@ public class History extends Tracking {
 	 * @since 1.8
 	 */
 	public enum Level {
-		trace, debug, info, warn, error
+		/**
+		 * Trace level
+		 */
+		trace,
+		/**
+		 * Debug level
+		 */
+		debug,
+		/**
+		 * Info level
+		 */
+		info,
+		/**
+		 * Warn level
+		 */
+		warn,
+		/**
+		 * Error level
+		 */
+		error
 	}
 
 	/**
@@ -38,7 +57,7 @@ public class History extends Tracking {
 
 	/**
 	 * Default constructor for a history with level info.
-	 * 
+	 *
 	 * @since 1.8
 	 */
 	protected History() {
@@ -47,7 +66,7 @@ public class History extends Tracking {
 
 	/**
 	 * Creates a history.
-	 * 
+	 *
 	 * @param level The level to set. If it is null, then info is used.
 	 * @since 1.8
 	 */

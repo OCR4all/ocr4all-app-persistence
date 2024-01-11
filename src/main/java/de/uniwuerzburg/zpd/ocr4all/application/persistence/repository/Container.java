@@ -1,7 +1,7 @@
 /**
  * File:     Container.java
  * Package:  de.uniwuerzburg.zpd.ocr4all.application.persistence.repository
- * 
+ *
  * Author:   Herbert Baier (herbert.baier@uni-wuerzburg.de)
  * Date:     24.11.2023
  */
@@ -49,7 +49,7 @@ public class Container extends Keyword {
 
 	/**
 	 * Default constructor for a container.
-	 * 
+	 *
 	 * @since 1.8
 	 */
 	public Container() {
@@ -58,8 +58,8 @@ public class Container extends Keyword {
 
 	/**
 	 * Creates a container with current created and updated time.
-	 * 
-	 * @param user
+	 *
+	 * @param user The user.
 	 * @since 1.8
 	 */
 	public Container(String user) {
@@ -70,7 +70,7 @@ public class Container extends Keyword {
 
 	/**
 	 * Creates a container.
-	 * 
+	 *
 	 * @param created     The created time.
 	 * @param updated     The updated time. If null, uses the created time.
 	 * @param user        The user.
@@ -185,13 +185,27 @@ public class Container extends Keyword {
 		 * @since 1.8
 		 */
 		public enum Right {
-			read, write, special;
+			/**
+			 * Read rights
+			 */
+			read,
+			/**
+			 * Write rights
+			 */
+			write,
+			/**
+			 * Special rights
+			 */
+			special;
 
+			/**
+			 * Set maximum rights
+			 */
 			public static Right maximal = special;
 
 			/**
 			 * Returns true if the target right is fulfilled.
-			 * 
+			 *
 			 * @param target The target right.
 			 * @return True if the target right is fulfilled.
 			 * @since 1.8
@@ -202,7 +216,7 @@ public class Container extends Keyword {
 
 			/**
 			 * Returns true if the read right is fulfilled.
-			 * 
+			 *
 			 * @return True if the read right is fulfilled.
 			 * @since 1.8
 			 */
@@ -212,7 +226,7 @@ public class Container extends Keyword {
 
 			/**
 			 * Returns true if the write right is fulfilled.
-			 * 
+			 *
 			 * @return True if the write right is fulfilled.
 			 * @since 1.8
 			 */
@@ -222,7 +236,7 @@ public class Container extends Keyword {
 
 			/**
 			 * Returns true if the special right is fulfilled.
-			 * 
+			 *
 			 * @return True if the special right is fulfilled.
 			 * @since 1.8
 			 */
@@ -232,7 +246,7 @@ public class Container extends Keyword {
 
 			/**
 			 * Returns true if the maximal right is fulfilled.
-			 * 
+			 *
 			 * @return True if the maximal right is fulfilled.
 			 * @since 1.8
 			 */
@@ -242,7 +256,7 @@ public class Container extends Keyword {
 
 			/**
 			 * Returns the maximal right.
-			 * 
+			 *
 			 * @param r1 The right.
 			 * @param r2 The right.
 			 * @return The maximal right.
@@ -275,7 +289,7 @@ public class Container extends Keyword {
 
 		/**
 		 * Default constructor for a container securities.
-		 * 
+		 *
 		 * @since 1.8
 		 */
 		public Security() {
@@ -284,7 +298,7 @@ public class Container extends Keyword {
 
 		/**
 		 * Creates a container securities.
-		 * 
+		 *
 		 * @param right The right.
 		 * @param user  The user.
 		 * @since 1.8
@@ -301,7 +315,7 @@ public class Container extends Keyword {
 
 		/**
 		 * Creates a container securities.
-		 * 
+		 *
 		 * @param users  The user grants.
 		 * @param groups The group grants.
 		 * @param other  The other right.
@@ -319,7 +333,7 @@ public class Container extends Keyword {
 		/**
 		 * Filter the grants, this means, remove the null and the item, whose right or
 		 * targets is null.
-		 * 
+		 *
 		 * @param grants The grants to filter.
 		 * @return The filtered grants.
 		 * @since 1.8
@@ -420,7 +434,7 @@ public class Container extends Keyword {
 
 			/**
 			 * Default constructor for a grant.
-			 * 
+			 *
 			 * @since 1.8
 			 */
 			public Grant() {
@@ -429,7 +443,7 @@ public class Container extends Keyword {
 
 			/**
 			 * Creates a grant.
-			 * 
+			 *
 			 * @param right  The right.
 			 * @param target The target.
 			 * @since 1.8
@@ -446,7 +460,7 @@ public class Container extends Keyword {
 
 			/**
 			 * Creates a grant.
-			 * 
+			 *
 			 * @param right   The right.
 			 * @param targets The targets.
 			 * @since 1.8

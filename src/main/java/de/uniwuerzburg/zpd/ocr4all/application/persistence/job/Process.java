@@ -1,7 +1,7 @@
 /**
  * File:     Process.java
  * Package:  de.uniwuerzburg.zpd.ocr4all.application.persistence.job
- * 
+ *
  * Author:   Herbert Baier (herbert.baier@uni-wuerzburg.de)
  * Date:     10.03.2022
  */
@@ -34,7 +34,30 @@ public class Process extends Tracking {
 	 * @since 1.8
 	 */
 	public enum State {
-		initialized, scheduled, running, completed, canceled, interrupted
+		/**
+		 * Initialized state
+		 */
+		initialized,
+		/**
+		 * Scheduled state
+		 */
+		scheduled,
+		/**
+		 * Running state
+		 */
+		running,
+		/**
+		 * Completed state
+		 */
+		completed,
+		/**
+		 * Cancelled state
+		 */
+		canceled,
+		/**
+		 * Interrupted state
+		 */
+		interrupted
 	}
 
 	/**
@@ -72,7 +95,7 @@ public class Process extends Tracking {
 
 	/**
 	 * Default constructor for a process.
-	 * 
+	 *
 	 * @since 1.8
 	 */
 	public Process() {
@@ -81,7 +104,7 @@ public class Process extends Tracking {
 
 	/**
 	 * Creates a process with current created and updated time.
-	 * 
+	 *
 	 * @param user The user.
 	 * @since 1.8
 	 */
@@ -93,7 +116,7 @@ public class Process extends Tracking {
 
 	/**
 	 * Creates a process.
-	 * 
+	 *
 	 * @param state          The state.
 	 * @param progress       The progress. This is a value between 0 and 1
 	 *                       inclusive. The initial value is 0.
