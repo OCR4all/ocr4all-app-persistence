@@ -24,6 +24,9 @@
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
 		
+		<!-- use the respective Spring Boot version of the ocr4all-app project -->
+		<SpringBoot_ocr4all-app_com.fasterxml.jackson.core.jackson-databind-version>2.15.4</SpringBoot_ocr4all-app_com.fasterxml.jackson.core.jackson-databind-version>
+		
 		<org.apache.maven.plugins.maven-source-plugin-version>3.3.0</org.apache.maven.plugins.maven-source-plugin-version>
 	</properties>
 
@@ -32,7 +35,7 @@
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>2.15.2</version>
+			<version>${SpringBoot_ocr4all-app_com.fasterxml.jackson.core.jackson-databind-version}</version>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
