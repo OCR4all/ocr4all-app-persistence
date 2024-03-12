@@ -28,6 +28,7 @@
 		<SpringBoot_ocr4all-app_com.fasterxml.jackson.core.jackson-databind.version>2.15.4</SpringBoot_ocr4all-app_com.fasterxml.jackson.core.jackson-databind.version>
 		
 		<org.apache.maven.plugins.maven-source-plugin.version>3.3.0</org.apache.maven.plugins.maven-source-plugin.version>
+		<org.apache.maven.plugins.maven-javadoc-plugin.version>3.6.3</org.apache.maven.plugins.maven-javadoc-plugin.version>
 	</properties>
 
 	<dependencies>
@@ -58,7 +59,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>${org.apache.maven.plugins.maven-source-plugin.version}</version>
+				<version>${org.apache.maven.plugins.maven-javadoc-plugin.version}</version>
 				<executions>
 					<execution>
 						<id>attach-javadocs</id>
