@@ -7,6 +7,8 @@
  */
 package de.uniwuerzburg.zpd.ocr4all.application.persistence;
 
+import de.uniwuerzburg.zpd.ocr4all.application.persistence.data.Collection;
+import de.uniwuerzburg.zpd.ocr4all.application.persistence.data.Data;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.folio.Folio;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.job.ProcessHistory;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.project.ActionHistory;
@@ -39,6 +41,8 @@ public enum Type {
 	project_action_history_v1(ActionHistory.class),
 
 	repository_v1(Repository.class), repository_container_v1(Container.class),
+
+	data_v1(Data.class), data_collection_v1(Collection.class),
 
 	service_provider_disabled_v1(DisabledServiceProvider.class),
 	service_provider_lazy_initialized_v1(LazyInitializedServiceProvider.class),
