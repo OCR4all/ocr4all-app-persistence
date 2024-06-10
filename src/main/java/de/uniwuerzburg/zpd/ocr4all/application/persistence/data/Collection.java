@@ -1,11 +1,11 @@
 /**
- * File:     Container.java
- * Package:  de.uniwuerzburg.zpd.ocr4all.application.persistence.repository
- *
+ * File:     Collection.java
+ * Package:  de.uniwuerzburg.zpd.ocr4all.application.persistence.data
+ * 
  * Author:   Herbert Baier (herbert.baier@uni-wuerzburg.de)
- * Date:     24.11.2023
+ * Date:     22.05.2024
  */
-package de.uniwuerzburg.zpd.ocr4all.application.persistence.repository;
+package de.uniwuerzburg.zpd.ocr4all.application.persistence.data;
 
 import java.util.Date;
 
@@ -13,13 +13,13 @@ import de.uniwuerzburg.zpd.ocr4all.application.persistence.Keyword;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.security.SecurityGrant;
 
 /**
- * Defines containers.
+ * Defines collections.
  *
  * @author <a href="mailto:herbert.baier@uni-wuerzburg.de">Herbert Baier</a>
  * @version 1.0
- * @since 1.8
+ * @since 17
  */
-public class Container extends Keyword {
+public class Collection extends Keyword {
 	/**
 	 * The serial version UID.
 	 */
@@ -46,28 +46,28 @@ public class Container extends Keyword {
 	private SecurityGrant security = null;
 
 	/**
-	 * Default constructor for a container.
+	 * Default constructor for a collection.
 	 *
 	 * @since 1.8
 	 */
-	public Container() {
+	public Collection() {
 		super();
 	}
 
 	/**
-	 * Creates a container with current created and updated time.
+	 * Creates a collection with current created and updated time.
 	 *
 	 * @param user The user.
 	 * @since 1.8
 	 */
-	public Container(String user) {
+	public Collection(String user) {
 		super(new Date(), user);
 
 		updated = getDate();
 	}
 
 	/**
-	 * Creates a container.
+	 * Creates a collection.
 	 *
 	 * @param created     The created time.
 	 * @param updated     The updated time. If null, uses the created time.
@@ -77,7 +77,8 @@ public class Container extends Keyword {
 	 * @param security    The security.
 	 * @since 1.8
 	 */
-	public Container(Date created, Date updated, String user, String name, String description, SecurityGrant security) {
+	public Collection(Date created, Date updated, String user, String name, String description,
+			SecurityGrant security) {
 		super(created, user);
 
 		this.updated = updated;

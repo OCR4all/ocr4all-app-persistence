@@ -1,11 +1,11 @@
 /**
- * File:     Repository.java
- * Package:  de.uniwuerzburg.zpd.ocr4all.application.persistence.repository
+ * File:     Data.java
+ * Package:  de.uniwuerzburg.zpd.ocr4all.application.persistence.data
  * 
  * Author:   Herbert Baier (herbert.baier@uni-wuerzburg.de)
- * Date:     23.11.2023
+ * Date:     22.05.2024
  */
-package de.uniwuerzburg.zpd.ocr4all.application.persistence.repository;
+package de.uniwuerzburg.zpd.ocr4all.application.persistence.data;
 
 import java.util.Date;
 
@@ -13,13 +13,13 @@ import de.uniwuerzburg.zpd.ocr4all.application.persistence.Tracking;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.security.SecurityOwner;
 
 /**
- * Defines repositories.
+ * Defines data.
  *
  * @author <a href="mailto:herbert.baier@uni-wuerzburg.de">Herbert Baier</a>
  * @version 1.0
- * @since 1.8
+ * @since 17
  */
-public class Repository extends Tracking {
+public class Data extends Tracking {
 	/**
 	 * The serial version UID.
 	 */
@@ -36,35 +36,35 @@ public class Repository extends Tracking {
 	private SecurityOwner security = null;
 
 	/**
-	 * Default constructor for a repository.
+	 * Default constructor for a data.
 	 * 
 	 * @since 1.8
 	 */
-	public Repository() {
+	public Data() {
 		super();
 	}
 
 	/**
-	 * Creates a repository with current created and updated time.
+	 * Creates a data with current created and updated time.
 	 * 
 	 * @param user
 	 * @since 1.8
 	 */
-	public Repository(String user) {
+	public Data(String user) {
 		super(new Date(), user);
 
 		updated = getDate();
 	}
 
 	/**
-	 * Creates a repository.
+	 * Creates a data.
 	 * 
 	 * @param created The created time.
 	 * @param updated The updated time. If null, uses the created time.
 	 * @param user    The user.
 	 * @since 1.8
 	 */
-	public Repository(Date created, Date updated, String user) {
+	public Data(Date created, Date updated, String user) {
 		super(created, user);
 
 		this.updated = updated;
