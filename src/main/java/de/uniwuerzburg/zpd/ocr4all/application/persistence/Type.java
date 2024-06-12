@@ -7,6 +7,9 @@
  */
 package de.uniwuerzburg.zpd.ocr4all.application.persistence;
 
+import de.uniwuerzburg.zpd.ocr4all.application.persistence.assemble.Assemble;
+import de.uniwuerzburg.zpd.ocr4all.application.persistence.assemble.Engine;
+import de.uniwuerzburg.zpd.ocr4all.application.persistence.assemble.Model;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.data.Collection;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.data.Data;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.data.Set;
@@ -44,6 +47,8 @@ public enum Type {
 	repository_v1(Repository.class), repository_container_v1(Container.class),
 
 	data_v1(Data.class), data_collection_v1(Collection.class), data_collection_set_v1(Set.class),
+
+	assemble_v1(Assemble.class), assemble_model_v1(Model.class), assemble_engine_v1(Engine.class),
 
 	service_provider_disabled_v1(DisabledServiceProvider.class),
 	service_provider_lazy_initialized_v1(LazyInitializedServiceProvider.class),

@@ -3,14 +3,13 @@
  * Package:  de.uniwuerzburg.zpd.ocr4all.application.persistence.repository
  * 
  * Author:   Herbert Baier (herbert.baier@uni-wuerzburg.de)
- * Date:     23.11.2023
+ * Date:     22.05.2024
  */
 package de.uniwuerzburg.zpd.ocr4all.application.persistence.repository;
 
 import java.util.Date;
 
-import de.uniwuerzburg.zpd.ocr4all.application.persistence.Tracking;
-import de.uniwuerzburg.zpd.ocr4all.application.persistence.security.SecurityOwner;
+import de.uniwuerzburg.zpd.ocr4all.application.persistence.security.SecurityTracking;
 
 /**
  * Defines repositories.
@@ -19,21 +18,11 @@ import de.uniwuerzburg.zpd.ocr4all.application.persistence.security.SecurityOwne
  * @version 1.0
  * @since 1.8
  */
-public class Repository extends Tracking {
+public class Repository extends SecurityTracking {
 	/**
 	 * The serial version UID.
 	 */
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * The updated time.
-	 */
-	private Date updated = null;
-
-	/**
-	 * The security.
-	 */
-	private SecurityOwner security = null;
 
 	/**
 	 * Default constructor for a repository.
@@ -47,13 +36,11 @@ public class Repository extends Tracking {
 	/**
 	 * Creates a repository with current created and updated time.
 	 * 
-	 * @param user
+	 * @param user The user.
 	 * @since 1.8
 	 */
 	public Repository(String user) {
-		super(new Date(), user);
-
-		updated = getDate();
+		super(user);
 	}
 
 	/**
@@ -65,49 +52,7 @@ public class Repository extends Tracking {
 	 * @since 1.8
 	 */
 	public Repository(Date created, Date updated, String user) {
-		super(created, user);
-
-		this.updated = updated;
-	}
-
-	/**
-	 * Returns the updated time.
-	 *
-	 * @return The updated time.
-	 * @since 1.8
-	 */
-	public Date getUpdated() {
-		return updated;
-	}
-
-	/**
-	 * Set the updated time.
-	 *
-	 * @param updated The updated time to set.
-	 * @since 1.8
-	 */
-	public void setUpdated(Date updated) {
-		this.updated = updated;
-	}
-
-	/**
-	 * Returns the security.
-	 *
-	 * @return The security.
-	 * @since 1.8
-	 */
-	public SecurityOwner getSecurity() {
-		return security;
-	}
-
-	/**
-	 * Set the security.
-	 *
-	 * @param security The security to set.
-	 * @since 1.8
-	 */
-	public void setSecurity(SecurityOwner security) {
-		this.security = security;
+		super(created, updated, user);
 	}
 
 }
