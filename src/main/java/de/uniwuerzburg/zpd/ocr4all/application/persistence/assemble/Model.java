@@ -1,11 +1,11 @@
 /**
- * File:     Container.java
- * Package:  de.uniwuerzburg.zpd.ocr4all.application.persistence.repository
+ * File:     Model.java
+ * Package:  de.uniwuerzburg.zpd.ocr4all.application.persistence.assemble
  *
  * Author:   Herbert Baier (herbert.baier@uni-wuerzburg.de)
- * Date:     24.11.2023
+ * Date:     12.06.2024
  */
-package de.uniwuerzburg.zpd.ocr4all.application.persistence.repository;
+package de.uniwuerzburg.zpd.ocr4all.application.persistence.assemble;
 
 import java.util.Date;
 
@@ -13,39 +13,39 @@ import de.uniwuerzburg.zpd.ocr4all.application.persistence.security.SecurityGran
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.security.SecurityKeyword;
 
 /**
- * Defines containers.
+ * Defines models.
  *
  * @author <a href="mailto:herbert.baier@uni-wuerzburg.de">Herbert Baier</a>
  * @version 1.0
  * @since 1.8
  */
-public class Container extends SecurityKeyword {
+public class Model extends SecurityKeyword {
 	/**
 	 * The serial version UID.
 	 */
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Default constructor for a container.
+	 * Default constructor for a model.
 	 *
 	 * @since 1.8
 	 */
-	public Container() {
+	public Model() {
 		super();
 	}
 
 	/**
-	 * Creates a container with current created and updated time.
+	 * Creates a model with current created and updated time.
 	 *
 	 * @param user The user.
 	 * @since 1.8
 	 */
-	public Container(String user) {
+	public Model(String user) {
 		super(user);
 	}
 
 	/**
-	 * Creates a container.
+	 * Creates a model.
 	 *
 	 * @param created     The created time.
 	 * @param updated     The updated time. If null, uses the created time.
@@ -55,7 +55,7 @@ public class Container extends SecurityKeyword {
 	 * @param security    The security.
 	 * @since 1.8
 	 */
-	public Container(Date created, Date updated, String user, String name, String description, SecurityGrant security) {
+	public Model(Date created, Date updated, String user, String name, String description, SecurityGrant security) {
 		super(created, updated, user, name, description, security);
 	}
 

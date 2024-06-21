@@ -1,57 +1,57 @@
 /**
- * File:     Data.java
- * Package:  de.uniwuerzburg.zpd.ocr4all.application.persistence.data
+ * File:     Assemble.java
+ * Package:  de.uniwuerzburg.zpd.ocr4all.application.persistence.assemble
  * 
  * Author:   Herbert Baier (herbert.baier@uni-wuerzburg.de)
- * Date:     22.05.2024
+ * Date:     12.06.2024
  */
-package de.uniwuerzburg.zpd.ocr4all.application.persistence.data;
+package de.uniwuerzburg.zpd.ocr4all.application.persistence.assemble;
 
 import java.util.Date;
 
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.security.SecurityTracking;
 
 /**
- * Defines data.
+ * Defines assembles.
  *
  * @author <a href="mailto:herbert.baier@uni-wuerzburg.de">Herbert Baier</a>
  * @version 1.0
  * @since 17
  */
-public class Data extends SecurityTracking {
+public class Assemble extends SecurityTracking {
 	/**
 	 * The serial version UID.
 	 */
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Default constructor for a data.
+	 * Default constructor for an assemble.
 	 * 
 	 * @since 1.8
 	 */
-	public Data() {
+	public Assemble() {
 		super();
 	}
 
 	/**
-	 * Creates a data with current created and updated time.
+	 * Creates an assemble with current created and updated time.
 	 * 
 	 * @param user The user.
 	 * @since 1.8
 	 */
-	public Data(String user) {
+	public Assemble(String user) {
 		super(user);
 	}
 
 	/**
-	 * Creates a data.
+	 * Creates an assemble.
 	 * 
 	 * @param created The created time.
 	 * @param updated The updated time. If null, uses the created time.
 	 * @param user    The user.
 	 * @since 1.8
 	 */
-	public Data(Date created, Date updated, String user) {
+	public Assemble(Date created, Date updated, String user) {
 		super(created, updated, user);
 	}
 
