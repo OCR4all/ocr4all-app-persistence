@@ -8,9 +8,7 @@
 package de.uniwuerzburg.zpd.ocr4all.application.persistence.assemble;
 
 import java.util.Date;
-
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.Tracking;
 
@@ -46,25 +44,67 @@ public class Engine extends Tracking {
 	}
 
 	/**
+	 * Defines states.
+	 *
+	 * @author <a href="mailto:herbert.baier@uni-wuerzburg.de">Herbert Baier</a>
+	 * @version 1.0
+	 * @since 1.8
+	 */
+	public enum State {
+		/**
+		 * The running state.
+		 */
+		running,
+		/**
+		 * The completed state.
+		 */
+		completed,
+		/**
+		 * The canceled state.
+		 */
+		canceled,
+		/**
+		 * The interrupted state.
+		 */
+		interrupted;
+
+		/**
+		 * Returns true if the job is done.
+		 * 
+		 * @return True if the job is done.
+		 * @since 17
+		 */
+		public boolean isDone() {
+			switch (this) {
+			case canceled:
+			case completed:
+			case interrupted:
+				return true;
+			default:
+				return false;
+			}
+		}
+	}
+
+	/**
 	 * The type.
 	 */
 	private Type type;
 
 	/**
+	 * The state.
+	 */
+	private State state;
+
+	/**
 	 * The version.
 	 */
-	private float version;
+	private String version;
 
 	/**
 	 * The arguments.
 	 */
-	private String arguments;
-
-	/**
-	 * True if the engine is ready.
-	 */
-	@JsonProperty("ready")
-	private boolean isReady;
+	private List<String> arguments;
 
 	/**
 	 * Default constructor for an engine.
@@ -76,13 +116,21 @@ public class Engine extends Tracking {
 	}
 
 	/**
-	 * Creates an engine with current created and updated time.
+	 * Creates an engine with current created and updated time and running state.
 	 * 
-	 * @param user The user.
+	 * @param user    The user.
+	 * @param type    The type.
+	 * @param version The version.
+	 * @param type    The type.
 	 * @since 1.8
 	 */
-	public Engine(String user) {
+	public Engine(String user, Type type, String version, List<String> arguments) {
 		super(new Date(), user);
+
+		state = State.running;
+		
+		this.version = version;
+		this.arguments = arguments;
 	}
 
 	/**
@@ -106,12 +154,32 @@ public class Engine extends Tracking {
 	}
 
 	/**
+	 * Returns the state.
+	 *
+	 * @return The state.
+	 * @since 17
+	 */
+	public State getState() {
+		return state;
+	}
+
+	/**
+	 * Set the state.
+	 *
+	 * @param state The state to set.
+	 * @since 17
+	 */
+	public void setState(State state) {
+		this.state = state;
+	}
+
+	/**
 	 * Returns the version.
 	 *
 	 * @return The version.
 	 * @since 17
 	 */
-	public float getVersion() {
+	public String getVersion() {
 		return version;
 	}
 
@@ -121,7 +189,7 @@ public class Engine extends Tracking {
 	 * @param version The version to set.
 	 * @since 17
 	 */
-	public void setVersion(float version) {
+	public void setVersion(String version) {
 		this.version = version;
 	}
 
@@ -131,7 +199,7 @@ public class Engine extends Tracking {
 	 * @return The arguments.
 	 * @since 17
 	 */
-	public String getArguments() {
+	public List<String> getArguments() {
 		return arguments;
 	}
 
@@ -141,29 +209,8 @@ public class Engine extends Tracking {
 	 * @param arguments The arguments to set.
 	 * @since 17
 	 */
-	public void setArguments(String arguments) {
+	public void setArguments(List<String> arguments) {
 		this.arguments = arguments;
-	}
-
-	/**
-	 * Returns true if the engine is ready.
-	 *
-	 * @return True if the engine is ready.
-	 * @since 17
-	 */
-	@JsonGetter("ready")
-	public boolean isReady() {
-		return isReady;
-	}
-
-	/**
-	 * Set to true if the engine is ready.
-	 *
-	 * @param isReady The ready flag to set.
-	 * @since 17
-	 */
-	public void setReady(boolean isReady) {
-		this.isReady = isReady;
 	}
 
 }
