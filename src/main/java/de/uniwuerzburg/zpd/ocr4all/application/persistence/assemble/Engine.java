@@ -69,9 +69,9 @@ public class Engine extends Tracking {
 		interrupted;
 
 		/**
-		 * Returns true if the job is done.
+		 * Returns true if the engine is done.
 		 * 
-		 * @return True if the job is done.
+		 * @return True if the engine is done.
 		 * @since 17
 		 */
 		public boolean isDone() {
@@ -107,6 +107,11 @@ public class Engine extends Tracking {
 	private List<String> arguments;
 
 	/**
+	 * The done time. Null if running.
+	 */
+	private Date done = null;
+
+	/**
 	 * Default constructor for an engine.
 	 * 
 	 * @since 17
@@ -127,8 +132,8 @@ public class Engine extends Tracking {
 	public Engine(String user, Type type, String version, List<String> arguments) {
 		super(new Date(), user);
 
-		state = State.running;
-		
+		setState(State.running);
+
 		this.version = version;
 		this.arguments = arguments;
 	}
@@ -164,13 +169,16 @@ public class Engine extends Tracking {
 	}
 
 	/**
-	 * Set the state.
+	 * Set the state and update the done time if required.
 	 *
 	 * @param state The state to set.
 	 * @since 17
 	 */
 	public void setState(State state) {
 		this.state = state;
+
+		if (this.state != null && this.state.isDone())
+			done = new Date();
 	}
 
 	/**
@@ -211,6 +219,16 @@ public class Engine extends Tracking {
 	 */
 	public void setArguments(List<String> arguments) {
 		this.arguments = arguments;
+	}
+
+	/**
+	 * Returns the done time. Null if running.
+	 *
+	 * @return The done time. Null if running.
+	 * @since 17
+	 */
+	public Date getDone() {
+		return done;
 	}
 
 }
