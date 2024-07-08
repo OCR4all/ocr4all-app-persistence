@@ -10,6 +10,9 @@ package de.uniwuerzburg.zpd.ocr4all.application.persistence.assemble;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.Tracking;
 
 /**
@@ -52,6 +55,10 @@ public class Engine extends Tracking {
 	 */
 	public enum State {
 		/**
+		 * Initialized state
+		 */
+		initialized,
+		/**
 		 * The running state.
 		 */
 		running,
@@ -89,17 +96,28 @@ public class Engine extends Tracking {
 	/**
 	 * The type.
 	 */
-	private Type type;
+	private Type type = Type.Calamari;
 
 	/**
 	 * The state.
 	 */
-	private State state;
+	private State state = State.initialized;
 
 	/**
 	 * The version.
 	 */
 	private String version;
+
+	/**
+	 * True if model was created using a processor.
+	 */
+	@JsonProperty("processor")
+	private boolean isProcessor;
+
+	/**
+	 * The name.
+	 */
+	private String name;
 
 	/**
 	 * The arguments.
@@ -123,18 +141,29 @@ public class Engine extends Tracking {
 	/**
 	 * Creates an engine with current created and updated time and running state.
 	 * 
-	 * @param user    The user.
-	 * @param type    The type.
-	 * @param version The version.
-	 * @param type    The type.
-	 * @since 1.8
+	 * @param state       The initial state. If null, the state is set initialized.
+	 * @param user        The user.
+	 * @param type        The type.
+	 * @param version     The version.
+	 * @param isProcessor True if model was created using a processor.
+	 * @param name        The name.
+	 * @param arguments   The arguments.
+	 * @throws IllegalArgumentException Throws if the type is null.
+	 * @since 17
 	 */
-	public Engine(String user, Type type, String version, List<String> arguments) {
+	public Engine(State state, String user, Type type, String version, boolean isProcessor, String name,
+			List<String> arguments) throws IllegalArgumentException {
 		super(new Date(), user);
 
-		setState(State.running);
+		if (type == null)
+			throw new IllegalArgumentException("the engine type can not be null");
 
+		setState(state == null ? State.initialized : state);
+
+		this.type = type;
 		this.version = version;
+		this.isProcessor = isProcessor;
+		this.name = name;
 		this.arguments = arguments;
 	}
 
@@ -155,7 +184,8 @@ public class Engine extends Tracking {
 	 * @since 17
 	 */
 	public void setType(Type type) {
-		this.type = type;
+		if (type != null)
+			this.type = type;
 	}
 
 	/**
@@ -175,10 +205,12 @@ public class Engine extends Tracking {
 	 * @since 17
 	 */
 	public void setState(State state) {
-		this.state = state;
+		if (this.state != null) {
+			this.state = state;
 
-		if (this.state != null && this.state.isDone())
-			done = new Date();
+			if (this.state.isDone())
+				done = new Date();
+		}
 	}
 
 	/**
@@ -199,6 +231,47 @@ public class Engine extends Tracking {
 	 */
 	public void setVersion(String version) {
 		this.version = version;
+	}
+
+	/**
+	 * Returns true if model was created using a processor
+	 *
+	 * @return True if model was created using a processor
+	 * @since 17
+	 */
+	@JsonGetter("processor")
+	public boolean isProcessor() {
+		return isProcessor;
+	}
+
+	/**
+	 * Set to true if model was created using a processor
+	 *
+	 * @param isProcessor The processor flag to set.
+	 * @since 17
+	 */
+	public void setProcessor(boolean isProcessor) {
+		this.isProcessor = isProcessor;
+	}
+
+	/**
+	 * Returns the name.
+	 *
+	 * @return The name.
+	 * @since 17
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * Set the name.
+	 *
+	 * @param name The name to set.
+	 * @since 17
+	 */
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	/**
