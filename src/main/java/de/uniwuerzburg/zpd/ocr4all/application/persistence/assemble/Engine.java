@@ -10,9 +10,6 @@ package de.uniwuerzburg.zpd.ocr4all.application.persistence.assemble;
 import java.util.Date;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.Tracking;
 
 /**
@@ -29,21 +26,21 @@ public class Engine extends Tracking {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Defines types.
+	 * Defines methods.
 	 *
 	 * @author <a href="mailto:herbert.baier@uni-wuerzburg.de">Herbert Baier</a>
 	 * @version 1.0
 	 * @since 17
 	 */
-	public enum Type {
+	public enum Method {
 		/**
-		 * The Calamari engine.
+		 * The processor method.
 		 */
-		Calamari,
+		processor,
 		/**
-		 * The Tesseract engine.
+		 * The manual method.
 		 */
-		Tesseract
+		manual
 	}
 
 	/**
@@ -55,9 +52,9 @@ public class Engine extends Tracking {
 	 */
 	public enum State {
 		/**
-		 * Initialized state
+		 * The uploading state
 		 */
-		initialized,
+		uploading,
 		/**
 		 * The running state.
 		 */
@@ -73,7 +70,11 @@ public class Engine extends Tracking {
 		/**
 		 * The interrupted state.
 		 */
-		interrupted;
+		interrupted,
+		/**
+		 * The undefined state.
+		 */
+		undefined;
 
 		/**
 		 * Returns true if the engine is done.
@@ -94,25 +95,46 @@ public class Engine extends Tracking {
 	}
 
 	/**
-	 * The type.
+	 * Defines types.
+	 *
+	 * @author <a href="mailto:herbert.baier@uni-wuerzburg.de">Herbert Baier</a>
+	 * @version 1.0
+	 * @since 17
 	 */
-	private Type type = Type.Calamari;
+	public enum Type {
+		/**
+		 * The Calamari engine.
+		 */
+		Calamari,
+		/**
+		 * The Tesseract engine.
+		 */
+		Tesseract,
+		/**
+		 * The undefined engine.
+		 */
+		undefined
+	}
 
 	/**
-	 * The state.
+	 * The method. Default method is manual.
 	 */
-	private State state = State.initialized;
+	private Method method = Method.manual;
+
+	/**
+	 * The state. Default state is undefined.
+	 */
+	private State state = State.undefined;
+
+	/**
+	 * The type. Default type is undefined.
+	 */
+	private Type type = Type.undefined;
 
 	/**
 	 * The version.
 	 */
 	private String version;
-
-	/**
-	 * True if model was created using a processor.
-	 */
-	@JsonProperty("processor")
-	private boolean isProcessor;
 
 	/**
 	 * The name.
@@ -125,7 +147,7 @@ public class Engine extends Tracking {
 	private List<String> arguments;
 
 	/**
-	 * The done time. Null if running.
+	 * The done time. Null if not done.
 	 */
 	private Date done = null;
 
@@ -141,30 +163,47 @@ public class Engine extends Tracking {
 	/**
 	 * Creates an engine with current created and updated time and running state.
 	 * 
-	 * @param state       The initial state. If null, the state is set initialized.
-	 * @param user        The user.
-	 * @param type        The type.
-	 * @param version     The version.
-	 * @param isProcessor True if model was created using a processor.
-	 * @param name        The name.
-	 * @param arguments   The arguments.
-	 * @throws IllegalArgumentException Throws if the type is null.
+	 * @param user      The user.
+	 * @param method    The method. If null, the default method is used.
+	 * @param state     The state. If null, the default state is used.
+	 * @param type      The type. If null, the default type is used.
+	 * @param version   The version.
+	 * @param name      The name.
+	 * @param arguments The arguments.
 	 * @since 17
 	 */
-	public Engine(State state, String user, Type type, String version, boolean isProcessor, String name,
-			List<String> arguments) throws IllegalArgumentException {
+	public Engine(String user, Method method, State state, Type type, String version, String name,
+			List<String> arguments) {
 		super(new Date(), user);
 
-		if (type == null)
-			throw new IllegalArgumentException("the engine type can not be null");
+		setMethod(method);
+		setState(state);
+		setType(type);
 
-		setState(state == null ? State.initialized : state);
-
-		this.type = type;
 		this.version = version;
-		this.isProcessor = isProcessor;
 		this.name = name;
 		this.arguments = arguments;
+	}
+
+	/**
+	 * Returns the method.
+	 *
+	 * @return The method.
+	 * @since 17
+	 */
+	public Method getMethod() {
+		return method;
+	}
+
+	/**
+	 * Set the method.
+	 *
+	 * @param method The method to set.
+	 * @since 17
+	 */
+	public void setMethod(Method method) {
+		if (method != null)
+			this.method = method;
 	}
 
 	/**
@@ -210,6 +249,8 @@ public class Engine extends Tracking {
 
 			if (this.state.isDone())
 				done = new Date();
+			else
+				done = null;
 		}
 	}
 
@@ -231,27 +272,6 @@ public class Engine extends Tracking {
 	 */
 	public void setVersion(String version) {
 		this.version = version;
-	}
-
-	/**
-	 * Returns true if model was created using a processor
-	 *
-	 * @return True if model was created using a processor
-	 * @since 17
-	 */
-	@JsonGetter("processor")
-	public boolean isProcessor() {
-		return isProcessor;
-	}
-
-	/**
-	 * Set to true if model was created using a processor
-	 *
-	 * @param isProcessor The processor flag to set.
-	 * @since 17
-	 */
-	public void setProcessor(boolean isProcessor) {
-		this.isProcessor = isProcessor;
 	}
 
 	/**
