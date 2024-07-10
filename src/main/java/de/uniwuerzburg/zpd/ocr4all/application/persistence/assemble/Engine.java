@@ -8,9 +8,7 @@
 package de.uniwuerzburg.zpd.ocr4all.application.persistence.assemble;
 
 import java.util.Date;
-
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.Tracking;
 
@@ -28,6 +26,75 @@ public class Engine extends Tracking {
 	private static final long serialVersionUID = 1L;
 
 	/**
+	 * Defines methods.
+	 *
+	 * @author <a href="mailto:herbert.baier@uni-wuerzburg.de">Herbert Baier</a>
+	 * @version 1.0
+	 * @since 17
+	 */
+	public enum Method {
+		/**
+		 * The processor method.
+		 */
+		processor,
+		/**
+		 * The manual method.
+		 */
+		manual
+	}
+
+	/**
+	 * Defines states.
+	 *
+	 * @author <a href="mailto:herbert.baier@uni-wuerzburg.de">Herbert Baier</a>
+	 * @version 1.0
+	 * @since 1.8
+	 */
+	public enum State {
+		/**
+		 * The uploading state
+		 */
+		uploading,
+		/**
+		 * The running state.
+		 */
+		running,
+		/**
+		 * The completed state.
+		 */
+		completed,
+		/**
+		 * The canceled state.
+		 */
+		canceled,
+		/**
+		 * The interrupted state.
+		 */
+		interrupted,
+		/**
+		 * The undefined state.
+		 */
+		undefined;
+
+		/**
+		 * Returns true if the engine is done.
+		 * 
+		 * @return True if the engine is done.
+		 * @since 17
+		 */
+		public boolean isDone() {
+			switch (this) {
+			case canceled:
+			case completed:
+			case interrupted:
+				return true;
+			default:
+				return false;
+			}
+		}
+	}
+
+	/**
 	 * Defines types.
 	 *
 	 * @author <a href="mailto:herbert.baier@uni-wuerzburg.de">Herbert Baier</a>
@@ -40,31 +107,53 @@ public class Engine extends Tracking {
 		 */
 		Calamari,
 		/**
+		 * The Kraken engine.
+		 */
+		Kraken,
+		/**
 		 * The Tesseract engine.
 		 */
-		Tesseract
+		Tesseract,
+		/**
+		 * The undefined engine.
+		 */
+		undefined
 	}
 
 	/**
-	 * The type.
+	 * The method. Default method is manual.
 	 */
-	private Type type;
+	private Method method = Method.manual;
+
+	/**
+	 * The state. Default state is undefined.
+	 */
+	private State state = State.undefined;
+
+	/**
+	 * The type. Default type is undefined.
+	 */
+	private Type type = Type.undefined;
 
 	/**
 	 * The version.
 	 */
-	private float version;
+	private String version;
+
+	/**
+	 * The name.
+	 */
+	private String name;
 
 	/**
 	 * The arguments.
 	 */
-	private String arguments;
+	private List<String> arguments;
 
 	/**
-	 * True if the engine is ready.
+	 * The done time. Null if not done.
 	 */
-	@JsonProperty("ready")
-	private boolean isReady;
+	private Date done = null;
 
 	/**
 	 * Default constructor for an engine.
@@ -76,13 +165,49 @@ public class Engine extends Tracking {
 	}
 
 	/**
-	 * Creates an engine with current created and updated time.
+	 * Creates an engine with current created and updated time and running state.
 	 * 
-	 * @param user The user.
-	 * @since 1.8
+	 * @param user      The user.
+	 * @param method    The method. If null, the default method is used.
+	 * @param state     The state. If null, the default state is used.
+	 * @param type      The type. If null, the default type is used.
+	 * @param version   The version.
+	 * @param name      The name.
+	 * @param arguments The arguments.
+	 * @since 17
 	 */
-	public Engine(String user) {
+	public Engine(String user, Method method, State state, Type type, String version, String name,
+			List<String> arguments) {
 		super(new Date(), user);
+
+		setMethod(method);
+		setState(state);
+		setType(type);
+
+		this.version = version;
+		this.name = name;
+		this.arguments = arguments;
+	}
+
+	/**
+	 * Returns the method.
+	 *
+	 * @return The method.
+	 * @since 17
+	 */
+	public Method getMethod() {
+		return method;
+	}
+
+	/**
+	 * Set the method.
+	 *
+	 * @param method The method to set.
+	 * @since 17
+	 */
+	public void setMethod(Method method) {
+		if (method != null)
+			this.method = method;
 	}
 
 	/**
@@ -102,7 +227,35 @@ public class Engine extends Tracking {
 	 * @since 17
 	 */
 	public void setType(Type type) {
-		this.type = type;
+		if (type != null)
+			this.type = type;
+	}
+
+	/**
+	 * Returns the state.
+	 *
+	 * @return The state.
+	 * @since 17
+	 */
+	public State getState() {
+		return state;
+	}
+
+	/**
+	 * Set the state and update the done time if required.
+	 *
+	 * @param state The state to set.
+	 * @since 17
+	 */
+	public void setState(State state) {
+		if (this.state != null) {
+			this.state = state;
+
+			if (this.state.isDone())
+				done = new Date();
+			else
+				done = null;
+		}
 	}
 
 	/**
@@ -111,7 +264,7 @@ public class Engine extends Tracking {
 	 * @return The version.
 	 * @since 17
 	 */
-	public float getVersion() {
+	public String getVersion() {
 		return version;
 	}
 
@@ -121,8 +274,28 @@ public class Engine extends Tracking {
 	 * @param version The version to set.
 	 * @since 17
 	 */
-	public void setVersion(float version) {
+	public void setVersion(String version) {
 		this.version = version;
+	}
+
+	/**
+	 * Returns the name.
+	 *
+	 * @return The name.
+	 * @since 17
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * Set the name.
+	 *
+	 * @param name The name to set.
+	 * @since 17
+	 */
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	/**
@@ -131,7 +304,7 @@ public class Engine extends Tracking {
 	 * @return The arguments.
 	 * @since 17
 	 */
-	public String getArguments() {
+	public List<String> getArguments() {
 		return arguments;
 	}
 
@@ -141,29 +314,18 @@ public class Engine extends Tracking {
 	 * @param arguments The arguments to set.
 	 * @since 17
 	 */
-	public void setArguments(String arguments) {
+	public void setArguments(List<String> arguments) {
 		this.arguments = arguments;
 	}
 
 	/**
-	 * Returns true if the engine is ready.
+	 * Returns the done time. Null if running.
 	 *
-	 * @return True if the engine is ready.
+	 * @return The done time. Null if running.
 	 * @since 17
 	 */
-	@JsonGetter("ready")
-	public boolean isReady() {
-		return isReady;
-	}
-
-	/**
-	 * Set to true if the engine is ready.
-	 *
-	 * @param isReady The ready flag to set.
-	 * @since 17
-	 */
-	public void setReady(boolean isReady) {
-		this.isReady = isReady;
+	public Date getDone() {
+		return done;
 	}
 
 }

@@ -499,14 +499,13 @@ public class PersistenceManager {
 	 * 
 	 * @param <T>   The entity class.
 	 * @param clazz The entity class.
-	 * @return The entity.
+	 * @return The entity. Null if no entity is available.
 	 * @throws NullPointerException Throws if the no repository is defined.
 	 * @throws IOException          Throws if the repository can not be read.
 	 * @since 1.8
 	 */
 	public <T extends Entity> T getEntity(Class<T> clazz) throws NullPointerException, IOException {
-		Path repository = null;
-		return getEntity(clazz, repository, null);
+		return getEntity(clazz, null, null);
 	}
 
 	/**
