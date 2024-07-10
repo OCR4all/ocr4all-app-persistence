@@ -56,10 +56,9 @@ public class ServiceProvider implements Serializable {
 	private List<ImageArgument> images;
 
 	/**
-	 * The recognition model arguments.
+	 * The weight arguments.
 	 */
-	@JsonProperty("recognition-model")
-	private List<RecognitionModelArgument> recognitionModels;
+	private List<WeightArgument> weights;
 
 	/**
 	 * The select arguments.
@@ -92,7 +91,7 @@ public class ServiceProvider implements Serializable {
 			integers = serviceProvider.getIntegers();
 			strings = serviceProvider.getStrings();
 			images = serviceProvider.getImages();
-			recognitionModels = serviceProvider.getRecognitionModels();
+			weights = serviceProvider.getWeights();
 			selects = serviceProvider.getSelects();
 		}
 	}
@@ -218,23 +217,23 @@ public class ServiceProvider implements Serializable {
 	}
 
 	/**
-	 * Returns the recognitionModels.
+	 * Returns the weights.
 	 *
-	 * @return The recognitionModels.
-	 * @since 1.8
+	 * @return The weights.
+	 * @since 17
 	 */
-	public List<RecognitionModelArgument> getRecognitionModels() {
-		return recognitionModels;
+	public List<WeightArgument> getWeights() {
+		return weights;
 	}
 
 	/**
-	 * Set the recognitionModels.
+	 * Set the weights.
 	 *
-	 * @param recognitionModels The recognitionModels to set.
-	 * @since 1.8
+	 * @param weights The weights to set.
+	 * @since 17
 	 */
-	public void setRecognitionModels(List<RecognitionModelArgument> recognitionModels) {
-		this.recognitionModels = recognitionModels;
+	public void setWeights(List<WeightArgument> weights) {
+		this.weights = weights;
 	}
 
 	/**

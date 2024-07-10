@@ -107,6 +107,10 @@ public class Engine extends Tracking {
 		 */
 		Calamari,
 		/**
+		 * The Kraken engine.
+		 */
+		Kraken,
+		/**
 		 * The Tesseract engine.
 		 */
 		Tesseract,

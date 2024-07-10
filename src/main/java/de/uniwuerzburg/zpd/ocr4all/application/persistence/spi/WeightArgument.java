@@ -1,5 +1,5 @@
 /**
- * File:     RecognitionModelArgument.java
+ * File:     WeightArgument.java
  * Package:  de.uniwuerzburg.zpd.ocr4all.application.persistence.spi
  * 
  * Author:   Herbert Baier (herbert.baier@uni-wuerzburg.de)
@@ -10,13 +10,13 @@ package de.uniwuerzburg.zpd.ocr4all.application.persistence.spi;
 import java.util.List;
 
 /**
- * Defines recognition model arguments.
+ * Defines weight arguments.
  *
  * @author <a href="mailto:herbert.baier@uni-wuerzburg.de">Herbert Baier</a>
  * @version 1.0
  * @since 1.8
  */
-public class RecognitionModelArgument extends Argument {
+public class WeightArgument extends Argument {
 	/**
 	 * The serial version UID.
 	 */
