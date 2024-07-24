@@ -1,51 +1,51 @@
 /**
- * File:     Container.java
+ * File:     Partition.java
  * Package:  de.uniwuerzburg.zpd.ocr4all.application.persistence.repository
  *
  * Author:   Herbert Baier (herbert.baier@uni-wuerzburg.de)
- * Date:     24.11.2023
+ * Date:     24.07.2024
  */
-package de.uniwuerzburg.zpd.ocr4all.application.persistence.repository;
+package de.uniwuerzburg.zpd.ocr4all.application.persistence.exchange;
 
 import java.util.Date;
 
-import de.uniwuerzburg.zpd.ocr4all.application.persistence.security.SecurityGrantRWS;
-import de.uniwuerzburg.zpd.ocr4all.application.persistence.security.SecurityRWSKeyword;
+import de.uniwuerzburg.zpd.ocr4all.application.persistence.security.SecurityGrantRW;
+import de.uniwuerzburg.zpd.ocr4all.application.persistence.security.SecurityRWKeyword;
 
 /**
- * Defines containers.
+ * Defines partitions.
  *
  * @author <a href="mailto:herbert.baier@uni-wuerzburg.de">Herbert Baier</a>
  * @version 1.0
- * @since 1.8
+ * @since 17
  */
-public class Container extends SecurityRWSKeyword {
+public class Partition extends SecurityRWKeyword {
 	/**
 	 * The serial version UID.
 	 */
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * Default constructor for a container.
+	 * Default constructor for a partition.
 	 *
-	 * @since 1.8
+	 * @since 17
 	 */
-	public Container() {
+	public Partition() {
 		super();
 	}
 
 	/**
-	 * Creates a container with current created and updated time.
+	 * Creates a partition with current created and updated time.
 	 *
 	 * @param user The user.
-	 * @since 1.8
+	 * @since 17
 	 */
-	public Container(String user) {
+	public Partition(String user) {
 		super(user);
 	}
 
 	/**
-	 * Creates a container.
+	 * Creates a partition.
 	 *
 	 * @param created     The created time.
 	 * @param updated     The updated time. If null, uses the created time.
@@ -53,9 +53,10 @@ public class Container extends SecurityRWSKeyword {
 	 * @param name        The name.
 	 * @param description The description.
 	 * @param security    The security.
-	 * @since 1.8
+	 * @since 17
 	 */
-	public Container(Date created, Date updated, String user, String name, String description, SecurityGrantRWS security) {
+	public Partition(Date created, Date updated, String user, String name, String description,
+			SecurityGrantRW security) {
 		super(created, updated, user, name, description, security);
 	}
 

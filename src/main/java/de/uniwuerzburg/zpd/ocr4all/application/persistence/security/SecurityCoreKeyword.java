@@ -3,7 +3,7 @@
  * Package:  de.uniwuerzburg.zpd.ocr4all.application.persistence.repository
  *
  * Author:   Herbert Baier (herbert.baier@uni-wuerzburg.de)
- * Date:     24.11.2023
+ * Date:     24.07.2024
  */
 package de.uniwuerzburg.zpd.ocr4all.application.persistence.security;
 
@@ -12,13 +12,13 @@ import java.util.Date;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.Keyword;
 
 /**
- * Defines securities with keyword support.
+ * Defines core securities with keyword support.
  *
  * @author <a href="mailto:herbert.baier@uni-wuerzburg.de">Herbert Baier</a>
  * @version 1.0
  * @since 1.8
  */
-public class SecurityKeyword extends Keyword {
+public class SecurityCoreKeyword<S extends SecurityGrantCore<?>> extends Keyword {
 	/**
 	 * The serial version UID.
 	 */
@@ -42,31 +42,32 @@ public class SecurityKeyword extends Keyword {
 	/**
 	 * The security.
 	 */
-	private SecurityGrant security = null;
+	private S security = null;
 
 	/**
-	 * Default constructor for a security with keyword support.
+	 * Default constructor for a core security with keyword support.
 	 *
 	 * @since 1.8
 	 */
-	public SecurityKeyword() {
+	public SecurityCoreKeyword() {
 		super();
 	}
 
 	/**
-	 * Creates a security with keyword support and current created and updated time.
+	 * Creates a core security with keyword support and current created and updated
+	 * time.
 	 *
 	 * @param user The user.
 	 * @since 1.8
 	 */
-	public SecurityKeyword(String user) {
+	public SecurityCoreKeyword(String user) {
 		super(new Date(), user);
 
 		updated = getDate();
 	}
 
 	/**
-	 * Creates a security with keyword support.
+	 * Creates a core security with keyword support.
 	 *
 	 * @param created     The created time.
 	 * @param updated     The updated time. If null, uses the created time.
@@ -76,8 +77,7 @@ public class SecurityKeyword extends Keyword {
 	 * @param security    The security.
 	 * @since 1.8
 	 */
-	public SecurityKeyword(Date created, Date updated, String user, String name, String description,
-			SecurityGrant security) {
+	public SecurityCoreKeyword(Date created, Date updated, String user, String name, String description, S security) {
 		super(created, user);
 
 		this.updated = updated;
@@ -152,7 +152,7 @@ public class SecurityKeyword extends Keyword {
 	 * @return The security.
 	 * @since 1.8
 	 */
-	public SecurityGrant getSecurity() {
+	public S getSecurity() {
 		return security;
 	}
 
@@ -162,7 +162,7 @@ public class SecurityKeyword extends Keyword {
 	 * @param security The security to set.
 	 * @since 1.8
 	 */
-	public void setSecurity(SecurityGrant security) {
+	public void setSecurity(S security) {
 		this.security = security;
 	}
 
