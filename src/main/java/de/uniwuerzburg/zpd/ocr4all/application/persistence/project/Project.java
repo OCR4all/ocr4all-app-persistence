@@ -65,11 +65,6 @@ public class Project extends Keyword {
 	private String description = null;
 
 	/**
-	 * The subfolder for exchange.
-	 */
-	private String exchange = null;
-
-	/**
 	 * The security.
 	 */
 	private Security security = null;
@@ -136,26 +131,6 @@ public class Project extends Keyword {
 	 */
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	/**
-	 * Returns the subfolder for exchange.
-	 *
-	 * @return The subfolder for exchange.
-	 * @since 1.8
-	 */
-	public String getExchange() {
-		return exchange;
-	}
-
-	/**
-	 * Set the subfolder for exchange.
-	 *
-	 * @param folder The subfolder to set.
-	 * @since 1.8
-	 */
-	public void setExchange(String folder) {
-		exchange = folder;
 	}
 
 	/**
