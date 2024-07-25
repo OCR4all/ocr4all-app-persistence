@@ -38,16 +38,12 @@ public class SecurityGrantRW extends SecurityGrantCore<SecurityGrantRW.Right> {
 		/**
 		 * Write rights
 		 */
-		write,
-		/**
-		 * Special rights
-		 */
-		special;
+		write;
 
 		/**
 		 * Set maximum rights
 		 */
-		public static Right maximal = special;
+		public static Right maximal = write;
 
 		/**
 		 * Returns true if the target right is fulfilled.
@@ -78,16 +74,6 @@ public class SecurityGrantRW extends SecurityGrantCore<SecurityGrantRW.Right> {
 		 */
 		public boolean isWriteFulfilled() {
 			return iFulfilled(write);
-		}
-
-		/**
-		 * Returns true if the special right is fulfilled.
-		 *
-		 * @return True if the special right is fulfilled.
-		 * @since 1.8
-		 */
-		public boolean isSpecialFulfilled() {
-			return iFulfilled(special);
 		}
 
 		/**
