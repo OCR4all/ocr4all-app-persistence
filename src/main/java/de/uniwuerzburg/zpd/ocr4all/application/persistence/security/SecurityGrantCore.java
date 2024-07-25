@@ -12,104 +12,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Defines securities with grants.
+ * Defines core securities with grants.
  *
  * @author <a href="mailto:herbert.baier@uni-wuerzburg.de">Herbert Baier</a>
  * @version 1.0
  * @since 17
  */
-public class SecurityGrant implements Serializable {
-	/**
-	 * Defines rights. The order of the elements is defined in ascending order to
-	 * the right.
-	 *
-	 * @author <a href="mailto:herbert.baier@uni-wuerzburg.de">Herbert Baier</a>
-	 * @version 1.0
-	 * @since 1.8
-	 */
-	public enum Right {
-		/**
-		 * Read rights
-		 */
-		read,
-		/**
-		 * Write rights
-		 */
-		write,
-		/**
-		 * Special rights
-		 */
-		special;
-
-		/**
-		 * Set maximum rights
-		 */
-		public static Right maximal = special;
-
-		/**
-		 * Returns true if the target right is fulfilled.
-		 *
-		 * @param target The target right.
-		 * @return True if the target right is fulfilled.
-		 * @since 1.8
-		 */
-		public boolean iFulfilled(Right target) {
-			return target != null && this.ordinal() >= target.ordinal();
-		}
-
-		/**
-		 * Returns true if the read right is fulfilled.
-		 *
-		 * @return True if the read right is fulfilled.
-		 * @since 1.8
-		 */
-		public boolean isReadFulfilled() {
-			return iFulfilled(read);
-		}
-
-		/**
-		 * Returns true if the write right is fulfilled.
-		 *
-		 * @return True if the write right is fulfilled.
-		 * @since 1.8
-		 */
-		public boolean isWriteFulfilled() {
-			return iFulfilled(write);
-		}
-
-		/**
-		 * Returns true if the special right is fulfilled.
-		 *
-		 * @return True if the special right is fulfilled.
-		 * @since 1.8
-		 */
-		public boolean isSpecialFulfilled() {
-			return iFulfilled(special);
-		}
-
-		/**
-		 * Returns true if the maximal right is fulfilled.
-		 *
-		 * @return True if the maximal right is fulfilled.
-		 * @since 1.8
-		 */
-		public boolean isMaximalFulfilled() {
-			return iFulfilled(maximal);
-		}
-
-		/**
-		 * Returns the maximal right.
-		 *
-		 * @param r1 The right.
-		 * @param r2 The right.
-		 * @return The maximal right.
-		 * @since 1.8
-		 */
-		public static Right getMaximnal(Right r1, Right r2) {
-			return r1 == null ? r2 : (r2 == null ? r1 : (r1.ordinal() > r2.ordinal() ? r1 : r2));
-		}
-	}
-
+public class SecurityGrantCore<R extends Enum<?>> implements Serializable {
 	/**
 	 * The serial version UID.
 	 */
@@ -118,53 +27,53 @@ public class SecurityGrant implements Serializable {
 	/**
 	 * The user grants.
 	 */
-	private Set<Grant> users;
+	private Set<Grant<R>> users;
 
 	/**
 	 * The group grants.
 	 */
-	private Set<Grant> groups;
+	private Set<Grant<R>> groups;
 
 	/**
 	 * The other right.
 	 */
-	private Right other = null;
+	private R other = null;
 
 	/**
-	 * Default constructor for securities with grants.
+	 * Default constructor for core securities with grants.
 	 *
 	 * @since 1.8
 	 */
-	public SecurityGrant() {
+	public SecurityGrantCore() {
 		super();
 	}
 
 	/**
-	 * Creates securities with grants.
+	 * Creates core securities with grants.
 	 *
 	 * @param right The right.
 	 * @param user  The user.
 	 * @since 1.8
 	 */
-	public SecurityGrant(Right right, String user) {
+	public SecurityGrantCore(R right, String user) {
 		super();
 
 		if (user != null && !user.isBlank() && right != null) {
-			Set<Grant> grants = new HashSet<>();
-			grants.add(new Grant(right, user));
+			Set<Grant<R>> grants = new HashSet<>();
+			grants.add(new Grant<R>(right, user));
 			setUsers(grants);
 		}
 	}
 
 	/**
-	 * Creates securities with grants.
+	 * Creates core securities with grants.
 	 *
 	 * @param users  The user grants.
 	 * @param groups The group grants.
 	 * @param other  The other right.
 	 * @since 1.8
 	 */
-	public SecurityGrant(Set<Grant> users, Set<Grant> groups, Right other) {
+	public SecurityGrantCore(Set<Grant<R>> users, Set<Grant<R>> groups, R other) {
 		super();
 
 		setUsers(users);
@@ -181,11 +90,11 @@ public class SecurityGrant implements Serializable {
 	 * @return The filtered grants.
 	 * @since 1.8
 	 */
-	private Set<Grant> filter(Set<Grant> grants) {
-		Set<Grant> objectives = new HashSet<>();
+	private Set<Grant<R>> filter(Set<Grant<R>> grants) {
+		Set<Grant<R>> objectives = new HashSet<>();
 
 		if (grants != null)
-			for (Grant grant : grants)
+			for (Grant<R> grant : grants)
 				if (grant != null && grant.getRight() != null && grant.getTargets() != null)
 					objectives.add(grant);
 
@@ -198,7 +107,7 @@ public class SecurityGrant implements Serializable {
 	 * @return The user grants.
 	 * @since 1.8
 	 */
-	public Set<Grant> getUsers() {
+	public Set<Grant<R>> getUsers() {
 		return users;
 	}
 
@@ -208,7 +117,7 @@ public class SecurityGrant implements Serializable {
 	 * @param grants The grants to set.
 	 * @since 1.8
 	 */
-	public void setUsers(Set<Grant> grants) {
+	public void setUsers(Set<Grant<R>> grants) {
 		this.users = filter(grants);
 	}
 
@@ -218,7 +127,7 @@ public class SecurityGrant implements Serializable {
 	 * @return The group grants.
 	 * @since 1.8
 	 */
-	public Set<Grant> getGroups() {
+	public Set<Grant<R>> getGroups() {
 		return groups;
 	}
 
@@ -228,7 +137,7 @@ public class SecurityGrant implements Serializable {
 	 * @param grants The grants to set.
 	 * @since 1.8
 	 */
-	public void setGroups(Set<Grant> grants) {
+	public void setGroups(Set<Grant<R>> grants) {
 		this.groups = filter(grants);
 	}
 
@@ -238,7 +147,7 @@ public class SecurityGrant implements Serializable {
 	 * @return The other right.
 	 * @since 1.8
 	 */
-	public Right getOther() {
+	public R getOther() {
 		return other;
 	}
 
@@ -248,7 +157,7 @@ public class SecurityGrant implements Serializable {
 	 * @param right The right to set.
 	 * @since 1.8
 	 */
-	public void setOther(Right right) {
+	public void setOther(R right) {
 		other = right;
 	}
 
@@ -259,7 +168,7 @@ public class SecurityGrant implements Serializable {
 	 * @version 1.0
 	 * @since 1.8
 	 */
-	public static class Grant implements Serializable {
+	public static class Grant<R extends Enum<?>> implements Serializable {
 		/**
 		 * The serial version UID.
 		 */
@@ -268,7 +177,7 @@ public class SecurityGrant implements Serializable {
 		/**
 		 * The right.
 		 */
-		private Right right = null;
+		private R right = null;
 
 		/**
 		 * The targets.
@@ -291,7 +200,7 @@ public class SecurityGrant implements Serializable {
 		 * @param target The target.
 		 * @since 1.8
 		 */
-		public Grant(Right right, String target) {
+		public Grant(R right, String target) {
 			super();
 
 			this.right = right;
@@ -308,7 +217,7 @@ public class SecurityGrant implements Serializable {
 		 * @param targets The targets.
 		 * @since 1.8
 		 */
-		public Grant(Right right, Set<String> targets) {
+		public Grant(R right, Set<String> targets) {
 			super();
 
 			this.right = right;
@@ -321,7 +230,7 @@ public class SecurityGrant implements Serializable {
 		 * @return The right.
 		 * @since 1.8
 		 */
-		public Right getRight() {
+		public R getRight() {
 			return right;
 		}
 
@@ -331,7 +240,7 @@ public class SecurityGrant implements Serializable {
 		 * @param right The right to set.
 		 * @since 1.8
 		 */
-		public void setRight(Right right) {
+		public void setRight(R right) {
 			this.right = right;
 		}
 

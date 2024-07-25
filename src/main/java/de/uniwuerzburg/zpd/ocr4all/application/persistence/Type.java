@@ -13,14 +13,15 @@ import de.uniwuerzburg.zpd.ocr4all.application.persistence.assemble.Model;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.data.Collection;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.data.Data;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.data.Set;
+import de.uniwuerzburg.zpd.ocr4all.application.persistence.exchange.Partition;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.folio.Folio;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.job.ProcessHistory;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.project.ActionHistory;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.project.Project;
+import de.uniwuerzburg.zpd.ocr4all.application.persistence.project.sandbox.Sandbox;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.project.sandbox.Snapshot;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.repository.Container;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.repository.Repository;
-import de.uniwuerzburg.zpd.ocr4all.application.persistence.project.sandbox.Sandbox;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.spi.DisabledServiceProvider;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.spi.LazyInitializedServiceProvider;
 import de.uniwuerzburg.zpd.ocr4all.application.persistence.spi.TaskExecutorServiceProvider;
@@ -43,6 +44,8 @@ public enum Type {
 
 	project_v1(Project.class), project_sandbox_v1(Sandbox.class), project_sandbox_snapshot_v1(Snapshot.class),
 	project_action_history_v1(ActionHistory.class),
+
+	exchange_partition_v1(Partition.class),
 
 	repository_v1(Repository.class), repository_container_v1(Container.class),
 
