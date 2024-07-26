@@ -10,8 +10,6 @@ package de.uniwuerzburg.zpd.ocr4all.application.persistence.spi;
 import java.io.Serializable;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 /**
  * Defines service providers.
  *
